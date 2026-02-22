@@ -901,6 +901,22 @@ WEB_TEMPLATE = """<!doctype html>
       color: var(--muted);
       font-size: 0.85rem;
     }
+    .source-jump {
+      color: var(--ink);
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+    .source-list {
+      margin: 8px 0 0;
+      padding-left: 18px;
+    }
+    .source-list li {
+      margin: 6px 0;
+    }
+    .source-list a {
+      color: #0f4a69;
+    }
     @media (max-width: 980px) {
       .layout { grid-template-columns: 1fr; }
       .sticky { position: static; max-height: none; }
@@ -914,6 +930,7 @@ WEB_TEMPLATE = """<!doctype html>
   <div class=\"wrap\">
     <h1>Ham Radio Learning Studio</h1>
     <p class=\"sub\">A separate learning interface for people starting from zero physics background. Each lesson explains the idea in plain language, then adds equations, visuals, and practice bridges.</p>
+    <p class=\"small\"><a class=\"source-jump\" href=\"#sources\">Sources</a></p>
 
     <div class=\"layout\">
       <aside class=\"card sticky\">
@@ -1084,6 +1101,19 @@ WEB_TEMPLATE = """<!doctype html>
             <tbody id=\"objectiveBody\"></tbody>
           </table>
           <div class=\"foot\">After each objective, reinforce with: <span class=\"cmd\">.venv/bin/python ham_practice.py practice --mode teach --group &lt;GROUP_ID&gt;</span></div>
+        </section>
+
+        <section class=\"card\" id=\"sources\">
+          <h2>Sources</h2>
+          <p class=\"small\">This learning studio references official amateur exam pools/syllabi and standard RF/communications references used for formulas and regulatory context.</p>
+          <ul class=\"source-list\">
+            <li><a href=\"http://ncvec.org/downloads/2026-2030%20Technician%20Pool%20and%20Syllabus%20Public%20Release%20Feb%2019%202026.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">NCVEC Technician Class Pool and Syllabus (2026-2030)</a></li>
+            <li><a href=\"http://ncvec.org/downloads/General%20Class%20Pool%20and%20Syllabus%202023-2027%20Public%20Release%20with%206th%20Errata%20Feb%204%202026.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">NCVEC General Class Pool and Syllabus (2023-2027, 6th Errata)</a></li>
+            <li><a href=\"http://ncvec.org/downloads/2024-2028%20Extra%20Class%20Question%20Pool%20and%20Syllabus%20Public%20Release%20with%204th%20Errata%20Feb%204%202026.pdf\" target=\"_blank\" rel=\"noopener noreferrer\">NCVEC Amateur Extra Class Pool and Syllabus (2024-2028, 4th Errata)</a></li>
+            <li><a href=\"https://www.ecfr.gov/current/title-47/chapter-I/subchapter-D/part-97\" target=\"_blank\" rel=\"noopener noreferrer\">FCC 47 CFR Part 97 (Amateur Radio Service Rules)</a></li>
+            <li><a href=\"https://physics.nist.gov/cgi-bin/cuu/Value?c\" target=\"_blank\" rel=\"noopener noreferrer\">NIST Fundamental Physical Constants: Speed of Light</a></li>
+            <li><a href=\"https://www.itu.int/rec/R-REC-P.525/en\" target=\"_blank\" rel=\"noopener noreferrer\">ITU-R P.525: Free-Space Attenuation (FSPL) Reference</a></li>
+          </ul>
         </section>
       </main>
     </div>
