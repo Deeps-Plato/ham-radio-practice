@@ -976,11 +976,11 @@ WEB_INDEX_HTML = """<!doctype html>
         </label>
         <label>
           Teach Subelement (optional)
-          <input id="subelement" type="text" placeholder="e.g. T1, G4, E7" />
+          <input id="teachSubelement" type="text" placeholder="e.g. T1, G4, E7" />
         </label>
         <label>
           Teach Group (optional)
-          <input id="group" type="text" placeholder="e.g. T1A, G8D, E4C" />
+          <input id="teachGroup" type="text" placeholder="e.g. T1A, G8D, E4C" />
         </label>
         <label>
           Questions / Group (teach)
@@ -995,7 +995,7 @@ WEB_INDEX_HTML = """<!doctype html>
       <div class="meta">
         <span id="progress" class="pill"></span>
         <span id="qid" class="pill"></span>
-        <span id="subelement" class="pill"></span>
+        <span id="subelementBadge" class="pill"></span>
         <span id="citation" class="pill hidden"></span>
       </div>
       <div id="questionText" class="question"></div>
@@ -1026,8 +1026,8 @@ WEB_INDEX_HTML = """<!doctype html>
     const elementEl = document.getElementById('element');
     const modeEl = document.getElementById('mode');
     const countEl = document.getElementById('count');
-    const subelementInput = document.getElementById('subelement');
-    const groupInput = document.getElementById('group');
+    const subelementInput = document.getElementById('teachSubelement');
+    const groupInput = document.getElementById('teachGroup');
     const qpgInput = document.getElementById('qpg');
     const startBtn = document.getElementById('startBtn');
 
@@ -1036,7 +1036,7 @@ WEB_INDEX_HTML = """<!doctype html>
 
     const progressEl = document.getElementById('progress');
     const qidEl = document.getElementById('qid');
-    const subelementEl = document.getElementById('subelement');
+    const subelementEl = document.getElementById('subelementBadge');
     const citationEl = document.getElementById('citation');
     const questionTextEl = document.getElementById('questionText');
     const teachingFocusEl = document.getElementById('teachingFocus');
