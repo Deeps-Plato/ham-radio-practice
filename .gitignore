@@ -1,0 +1,11 @@
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+data/raw/
+data/progress/missed_questions.json
+
+.DS_Store
+Thumbs.db
