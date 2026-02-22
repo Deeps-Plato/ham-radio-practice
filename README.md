@@ -8,6 +8,7 @@ This project downloads/parses official NCVEC question pools and gives you:
 - Guided teaching mode (objective-based learning by syllabus group)
 - Full syllabus outline command (all subelements and group objectives)
 - Local browser web UI
+- Separate learning website focused on radio math/physics with graphs and calculators
 
 ## Current project path
 
@@ -110,6 +111,34 @@ Then open:
 
 The web app supports exam/random/missed modes and updates your missed-question tracker automatically.
 The web app also supports guided teaching mode with syllabus focus and knowledge-point feedback.
+
+## Separate Learning Website
+
+This is a separate interface from quiz practice, designed for conceptual learning.
+
+Start it directly:
+
+```bash
+.venv/bin/python ham_learning.py web --host 127.0.0.1 --port 8788
+```
+
+Or use launcher script:
+
+```bash
+./start_ham_learning.sh 8788 127.0.0.1
+```
+
+Open:
+
+- `http://127.0.0.1:8788`
+
+What it includes:
+
+- Step-by-step curriculum for radio physics and math fundamentals
+- Interactive graphs (wave behavior, resonance/Q, inverse-square intuition, dB ladder)
+- Calculators (wavelength, Ohm's law/power, dB and FSPL)
+- Full official syllabus explorer by element/group objective
+- Direct bridge commands back into practice mode (`practice --mode teach --group ...`)
 
 ## Refresh Source PDFs
 
