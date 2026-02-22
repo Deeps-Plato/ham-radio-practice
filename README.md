@@ -144,6 +144,24 @@ What it includes:
 - Full official syllabus explorer by element/group objective
 - Direct bridge commands back into practice mode (`practice --mode teach --group ...`)
 
+## Run Both Apps Together
+
+You can run both at the same time on different ports:
+
+```bash
+./start_ham_both.sh 8787 8788 127.0.0.1
+```
+
+Open:
+
+- Practice UI: `http://127.0.0.1:8787`
+- Learning UI: `http://127.0.0.1:8788`
+
+Notes:
+
+- The two ports must be different.
+- Keep that terminal open while using the apps; press `Ctrl+C` to stop both.
+
 ## Refresh Source PDFs
 
 ```bash

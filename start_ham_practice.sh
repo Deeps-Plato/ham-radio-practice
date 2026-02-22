@@ -12,7 +12,7 @@ if [[ ! -d ".venv" ]]; then
 fi
 
 if [[ ! -f "data/pools/element2.json" || ! -f "data/pools/element3.json" || ! -f "data/pools/element4.json" ]]; then
-  .venv/bin/pip install -q -r requirements.txt
+  .venv/bin/python -m pip install -q -r requirements.txt
   .venv/bin/python ham_practice.py update-pools
 fi
 
