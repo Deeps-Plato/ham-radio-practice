@@ -376,11 +376,216 @@ BEGINNER_EXPANSIONS: Dict[str, Dict[str, Any]] = {
 }
 
 
+KNOWLEDGE_CHECKS: Dict[str, List[Dict[str, Any]]] = {
+    "m1": [
+        {
+            "q": "If frequency goes up, what happens to wavelength?",
+            "choices": ["It gets longer", "It gets shorter", "It stays the same"],
+            "answer": 1,
+            "explain": "Wavelength and frequency move in opposite directions (lambda = c/f).",
+        },
+        {
+            "q": "About how long is a 2 meter half-wave antenna?",
+            "choices": ["About 1 meter", "About 2 meters", "About 4 meters"],
+            "answer": 0,
+            "explain": "A half-wave on the 2 meter band is around 1 meter.",
+        },
+        {
+            "q": "What does MHz measure?",
+            "choices": ["Power", "Frequency", "Resistance"],
+            "answer": 1,
+            "explain": "MHz is millions of cycles per second, a frequency unit.",
+        },
+    ],
+    "m2": [
+        {
+            "q": "A +3 dB increase is closest to what power change?",
+            "choices": ["About 2x", "About 5x", "About 10x"],
+            "answer": 0,
+            "explain": "+3 dB is approximately double power.",
+        },
+        {
+            "q": "Is dB an absolute power unit?",
+            "choices": ["Yes", "No"],
+            "answer": 1,
+            "explain": "dB is a ratio. dBm is an absolute reference to 1 mW.",
+        },
+        {
+            "q": "In a link budget, how are losses handled in dB?",
+            "choices": ["Added", "Subtracted", "Ignored"],
+            "answer": 1,
+            "explain": "You subtract losses and add gains in dB.",
+        },
+    ],
+    "m3": [
+        {
+            "q": "Ohm's law is:",
+            "choices": ["V = I * R", "P = V / I", "R = V * I"],
+            "answer": 0,
+            "explain": "Voltage equals current times resistance.",
+        },
+        {
+            "q": "If V is fixed and R increases, current does what?",
+            "choices": ["Increases", "Decreases", "Stays the same"],
+            "answer": 1,
+            "explain": "I = V/R, so higher R gives lower I for fixed V.",
+        },
+        {
+            "q": "Power can be calculated as:",
+            "choices": ["P = V * I", "P = V + I", "P = R / I"],
+            "answer": 0,
+            "explain": "Power in watts is voltage times current.",
+        },
+    ],
+    "m4": [
+        {
+            "q": "Inductive reactance XL changes with frequency by:",
+            "choices": ["Going up", "Going down", "Staying fixed"],
+            "answer": 0,
+            "explain": "XL = 2*pi*f*L, so it rises as frequency rises.",
+        },
+        {
+            "q": "Capacitive reactance XC changes with frequency by:",
+            "choices": ["Going up", "Going down", "Staying fixed"],
+            "answer": 1,
+            "explain": "XC = 1/(2*pi*f*C), so it falls as frequency rises.",
+        },
+        {
+            "q": "At resonance, the circuit often has:",
+            "choices": ["A clear peak response", "No response", "Infinite DC current"],
+            "answer": 0,
+            "explain": "Resonance is where reactive parts balance and response can peak.",
+        },
+    ],
+    "m5": [
+        {
+            "q": "Which mode is usually narrower in bandwidth?",
+            "choices": ["FM", "SSB", "Broadcast TV"],
+            "answer": 1,
+            "explain": "SSB generally occupies less bandwidth than FM voice.",
+        },
+        {
+            "q": "Why care about bandwidth near band edges?",
+            "choices": ["No reason", "To avoid out-of-band emissions", "Only for satellites"],
+            "answer": 1,
+            "explain": "Your occupied signal must stay inside legal band segments.",
+        },
+        {
+            "q": "Overdriving audio in SSB often causes:",
+            "choices": ["Cleaner signal", "Wider, dirtier signal", "No change"],
+            "answer": 1,
+            "explain": "Too much drive causes distortion and splatter.",
+        },
+    ],
+    "m6": [
+        {
+            "q": "A high SWR usually indicates:",
+            "choices": ["Good match", "Mismatch", "Low battery"],
+            "answer": 1,
+            "explain": "High SWR usually means line/load mismatch.",
+        },
+        {
+            "q": "Can a tuner remove all feedline loss?",
+            "choices": ["Yes", "No"],
+            "answer": 1,
+            "explain": "A tuner transforms impedance but cannot erase line loss already present.",
+        },
+        {
+            "q": "At higher frequency, typical coax loss is usually:",
+            "choices": ["Lower", "Higher", "Unchanged"],
+            "answer": 1,
+            "explain": "Loss generally increases as frequency increases.",
+        },
+    ],
+    "m7": [
+        {
+            "q": "Antenna gain mostly means:",
+            "choices": ["Creating extra power", "Focusing energy", "Cooling the radio"],
+            "answer": 1,
+            "explain": "Gain is directional concentration, not free energy.",
+        },
+        {
+            "q": "Wrong polarization between two stations causes:",
+            "choices": ["Potential signal loss", "Guaranteed stronger signal", "No effect"],
+            "answer": 0,
+            "explain": "Polarization mismatch can reduce received signal significantly.",
+        },
+        {
+            "q": "Directional antennas are best when:",
+            "choices": ["You need coverage in one main direction", "You need equal all-around coverage", "You never move"],
+            "answer": 0,
+            "explain": "Directional designs focus energy where you need it most.",
+        },
+    ],
+    "m8": [
+        {
+            "q": "HF propagation often depends strongly on:",
+            "choices": ["Moon phase only", "Ionosphere and solar conditions", "Cable color"],
+            "answer": 1,
+            "explain": "Ionospheric conditions drive many HF path behaviors.",
+        },
+        {
+            "q": "VHF/UHF is commonly:",
+            "choices": ["Line-of-sight dominated", "Always worldwide", "Always groundwave only"],
+            "answer": 0,
+            "explain": "Higher frequencies are often line-of-sight, with special enhancements.",
+        },
+        {
+            "q": "When a band closes, a good operator should:",
+            "choices": ["Keep calling forever", "Try another band/mode", "Increase power only"],
+            "answer": 1,
+            "explain": "Adapting bands and modes is core operating skill.",
+        },
+    ],
+    "m9": [
+        {
+            "q": "A link budget starts with:",
+            "choices": ["Random guess", "Transmit power reference", "Antenna color"],
+            "answer": 1,
+            "explain": "Start from known transmit power and track gains/losses.",
+        },
+        {
+            "q": "If received level is below receiver needs, you should:",
+            "choices": ["Improve gains/reduce losses/noise", "Do nothing", "Only change call sign"],
+            "answer": 0,
+            "explain": "Optimize system components and noise environment.",
+        },
+        {
+            "q": "FSPL generally changes with distance by:",
+            "choices": ["Increasing", "Decreasing", "Staying constant"],
+            "answer": 0,
+            "explain": "Free-space path loss grows with distance.",
+        },
+    ],
+    "m10": [
+        {
+            "q": "Increasing distance from an antenna usually:",
+            "choices": ["Raises exposure", "Lowers exposure", "Has no effect"],
+            "answer": 1,
+            "explain": "Field strength and density drop quickly with distance.",
+        },
+        {
+            "q": "Good station safety includes:",
+            "choices": ["Grounding and bonding", "Ignoring wiring", "No labels"],
+            "answer": 0,
+            "explain": "Grounding/bonding are core safety practices.",
+        },
+        {
+            "q": "Battery safety is important because:",
+            "choices": ["Batteries are always harmless", "Thermal and chemical hazards can occur", "Only FCC cares"],
+            "answer": 1,
+            "explain": "Improper charging/discharging can create serious hazards.",
+        },
+    ],
+}
+
+
 def get_learning_roadmap() -> List[Dict[str, Any]]:
     merged: List[Dict[str, Any]] = []
     for module in LEARNING_ROADMAP:
         item = dict(module)
         item.update(BEGINNER_EXPANSIONS.get(str(module.get("id")), {}))
+        item["knowledge_checks"] = KNOWLEDGE_CHECKS.get(str(module.get("id")), [])
         merged.append(item)
     return merged
 
@@ -614,6 +819,53 @@ WEB_TEMPLATE = """<!doctype html>
       font-size: 0.86rem;
       color: var(--muted);
     }
+    .toggle-row {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 10px;
+      padding: 10px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      background: #f7fbff;
+    }
+    .hint-box {
+      margin-top: 8px;
+      padding: 8px 10px;
+      border-radius: 8px;
+      border: 1px dashed var(--line);
+      background: #fdfcf8;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
+    .hidden { display: none; }
+    .quiz-wrap {
+      margin-top: 12px;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px;
+      background: #fbfdfb;
+    }
+    .quiz-q {
+      font-weight: 600;
+      margin-bottom: 8px;
+    }
+    .quiz-choice {
+      display: block;
+      width: 100%;
+      text-align: left;
+      margin: 6px 0;
+      background: #fff;
+      color: var(--ink);
+      border: 1px solid var(--line);
+    }
+    .quiz-choice.correct { border-color: var(--ok); background: #ebf8ef; }
+    .quiz-choice.incorrect { border-color: var(--bad); background: #fceceb; }
+    .quiz-meta {
+      margin-top: 8px;
+      color: var(--muted);
+      font-size: 0.88rem;
+    }
     .cmd {
       font-family: \"Lucida Console\", Monaco, monospace;
       font-size: 0.82rem;
@@ -674,6 +926,14 @@ WEB_TEMPLATE = """<!doctype html>
           <div class=\"module-kicker\" id=\"moduleKicker\"></div>
           <h2 id=\"moduleTitle\"></h2>
           <p id=\"moduleGoal\"></p>
+          <div class=\"toggle-row\">
+            <label style=\"display:flex;align-items:center;gap:8px;color:var(--ink);font-size:0.92rem;\">
+              <input id=\"superBeginnerToggle\" type=\"checkbox\" />
+              Super Beginner Mode (start simple, reveal details step-by-step)
+            </label>
+            <button id=\"revealDetailBtn\" class=\"secondary hidden\" style=\"margin-left:auto;\">Reveal Next Detail</button>
+          </div>
+          <div id=\"superHint\" class=\"hint-box hidden\"></div>
           <div class=\"plain-box\">
             <h3>In Plain English</h3>
             <p id=\"modulePlain\"></p>
@@ -688,19 +948,21 @@ WEB_TEMPLATE = """<!doctype html>
               <ul id=\"moduleMistakes\"></ul>
             </div>
           </div>
-          <h3>Key Concepts</h3>
-          <ul id=\"modulePoints\"></ul>
-          <h3>Core Equations</h3>
-          <div id=\"moduleMath\"></div>
-          <h3>Concept Picture And Graph</h3>
-          <div class=\"beginner-grid lesson-visual\">
-            <div>
-              <canvas id=\"moduleSketchCanvas\" width=\"520\" height=\"240\"></canvas>
-              <div class=\"caption\" id=\"moduleSketchCaption\"></div>
-            </div>
-            <div>
-              <canvas id=\"moduleGraphCanvas\" width=\"520\" height=\"240\"></canvas>
-              <div class=\"caption\" id=\"moduleGraphCaption\"></div>
+          <div id=\"detailBlock\">
+            <h3 id=\"keyConceptsTitle\">Key Concepts</h3>
+            <ul id=\"modulePoints\"></ul>
+            <h3 id=\"equationTitle\">Core Equations</h3>
+            <div id=\"moduleMath\"></div>
+            <h3 id=\"visualTitle\">Concept Picture And Graph</h3>
+            <div class=\"beginner-grid lesson-visual\" id=\"visualBlock\">
+              <div>
+                <canvas id=\"moduleSketchCanvas\" width=\"520\" height=\"240\"></canvas>
+                <div class=\"caption\" id=\"moduleSketchCaption\"></div>
+              </div>
+              <div>
+                <canvas id=\"moduleGraphCanvas\" width=\"520\" height=\"240\"></canvas>
+                <div class=\"caption\" id=\"moduleGraphCaption\"></div>
+              </div>
             </div>
           </div>
           <h3>Why This Matters On Exam Day</h3>
@@ -709,6 +971,17 @@ WEB_TEMPLATE = """<!doctype html>
             <strong>Bridge To Practice Mode</strong>
             <p class=\"small\">Use these group IDs in your existing quiz app to reinforce this lesson:</p>
             <div id=\"modulePractice\"></div>
+          </div>
+          <div class=\"quiz-wrap\">
+            <h3 style=\"margin-bottom:6px;\">Quick Knowledge Check</h3>
+            <div id=\"quizQuestion\" class=\"quiz-q\"></div>
+            <div id=\"quizChoices\"></div>
+            <div id=\"quizExplain\" class=\"hint-box hidden\"></div>
+            <div class=\"quiz-meta\" id=\"quizMeta\"></div>
+            <div style=\"margin-top:8px;display:flex;gap:8px;flex-wrap:wrap;\">
+              <button id=\"quizNextBtn\" class=\"secondary hidden\">Next Question</button>
+              <button id=\"quizResetBtn\" class=\"secondary\">Restart Quiz</button>
+            </div>
           </div>
         </section>
 
@@ -820,6 +1093,11 @@ WEB_TEMPLATE = """<!doctype html>
     const roadmap = __ROADMAP_JSON__;
     let syllabusCache = null;
     let activeModule = 0;
+    let superBeginner = false;
+    let superRevealStage = 3;
+    let quizIndex = 0;
+    let quizScore = 0;
+    let quizAnswered = false;
 
     const moduleList = document.getElementById('moduleList');
     const moduleKicker = document.getElementById('moduleKicker');
@@ -836,6 +1114,20 @@ WEB_TEMPLATE = """<!doctype html>
     const moduleGraphCanvas = document.getElementById('moduleGraphCanvas');
     const moduleSketchCaption = document.getElementById('moduleSketchCaption');
     const moduleGraphCaption = document.getElementById('moduleGraphCaption');
+    const superBeginnerToggle = document.getElementById('superBeginnerToggle');
+    const revealDetailBtn = document.getElementById('revealDetailBtn');
+    const superHint = document.getElementById('superHint');
+    const detailBlock = document.getElementById('detailBlock');
+    const keyConceptsTitle = document.getElementById('keyConceptsTitle');
+    const equationTitle = document.getElementById('equationTitle');
+    const visualTitle = document.getElementById('visualTitle');
+    const visualBlock = document.getElementById('visualBlock');
+    const quizQuestion = document.getElementById('quizQuestion');
+    const quizChoices = document.getElementById('quizChoices');
+    const quizExplain = document.getElementById('quizExplain');
+    const quizMeta = document.getElementById('quizMeta');
+    const quizNextBtn = document.getElementById('quizNextBtn');
+    const quizResetBtn = document.getElementById('quizResetBtn');
 
     function safeNum(v) {
       const n = Number(v);
@@ -909,6 +1201,154 @@ WEB_TEMPLATE = """<!doctype html>
       });
 
       drawModuleVisuals(m);
+      superRevealStage = superBeginner ? 0 : 3;
+      applySuperBeginnerVisibility();
+      resetQuizForModule(m);
+    }
+
+    function applySuperBeginnerVisibility() {
+      const showAll = !superBeginner;
+
+      if (showAll) {
+        detailBlock.classList.remove('hidden');
+        revealDetailBtn.classList.add('hidden');
+        superHint.classList.add('hidden');
+        keyConceptsTitle.classList.remove('hidden');
+        modulePoints.classList.remove('hidden');
+        equationTitle.classList.remove('hidden');
+        moduleMath.classList.remove('hidden');
+        visualTitle.classList.remove('hidden');
+        visualBlock.classList.remove('hidden');
+        return;
+      }
+
+      revealDetailBtn.classList.remove('hidden');
+      superHint.classList.remove('hidden');
+
+      if (superRevealStage <= 0) {
+        detailBlock.classList.add('hidden');
+        superHint.textContent = 'Level 1: start with plain-English overview and steps only. Click "Reveal Next Detail" when ready.';
+        keyConceptsTitle.classList.add('hidden');
+        modulePoints.classList.add('hidden');
+        equationTitle.classList.add('hidden');
+        moduleMath.classList.add('hidden');
+        visualTitle.classList.add('hidden');
+        visualBlock.classList.add('hidden');
+        return;
+      }
+
+      if (superRevealStage === 1) {
+        detailBlock.classList.remove('hidden');
+        superHint.textContent = 'Level 2: key concepts are now visible. Equations and visuals remain hidden.';
+        keyConceptsTitle.classList.remove('hidden');
+        modulePoints.classList.remove('hidden');
+        equationTitle.classList.add('hidden');
+        moduleMath.classList.add('hidden');
+        visualTitle.classList.add('hidden');
+        visualBlock.classList.add('hidden');
+        return;
+      }
+
+      if (superRevealStage === 2) {
+        detailBlock.classList.remove('hidden');
+        superHint.textContent = 'Level 3: equations are now visible. Visual diagrams are still hidden.';
+        keyConceptsTitle.classList.remove('hidden');
+        modulePoints.classList.remove('hidden');
+        equationTitle.classList.remove('hidden');
+        moduleMath.classList.remove('hidden');
+        visualTitle.classList.add('hidden');
+        visualBlock.classList.add('hidden');
+        return;
+      }
+
+      detailBlock.classList.remove('hidden');
+      superHint.textContent = 'Level 4: full detail shown, including concept picture and graph.';
+      keyConceptsTitle.classList.remove('hidden');
+      modulePoints.classList.remove('hidden');
+      equationTitle.classList.remove('hidden');
+      moduleMath.classList.remove('hidden');
+      visualTitle.classList.remove('hidden');
+      visualBlock.classList.remove('hidden');
+    }
+
+    function resetQuizForModule(moduleObj) {
+      quizIndex = 0;
+      quizScore = 0;
+      quizAnswered = false;
+      quizExplain.classList.add('hidden');
+      quizExplain.textContent = '';
+      quizNextBtn.classList.add('hidden');
+      renderQuizQuestion(moduleObj);
+    }
+
+    function renderQuizQuestion(moduleObj) {
+      const checks = moduleObj.knowledge_checks || [];
+      if (!checks.length) {
+        quizQuestion.textContent = 'No quiz questions for this module yet.';
+        quizChoices.innerHTML = '';
+        quizMeta.textContent = '';
+        quizNextBtn.classList.add('hidden');
+        return;
+      }
+
+      if (quizIndex >= checks.length) {
+        quizQuestion.textContent = `Quiz complete. Final score: ${quizScore}/${checks.length}`;
+        quizChoices.innerHTML = '';
+        quizMeta.textContent = 'Press Restart Quiz to try again.';
+        quizNextBtn.classList.add('hidden');
+        quizExplain.classList.remove('hidden');
+        quizExplain.textContent = 'Great work. Re-run the module quiz to reinforce memory.';
+        return;
+      }
+
+      const q = checks[quizIndex];
+      quizQuestion.textContent = `Q${quizIndex + 1}. ${q.q}`;
+      quizChoices.innerHTML = '';
+      quizExplain.classList.add('hidden');
+      quizExplain.textContent = '';
+      quizNextBtn.classList.add('hidden');
+      quizAnswered = false;
+
+      q.choices.forEach((choice, idx) => {
+        const btn = document.createElement('button');
+        btn.className = 'quiz-choice';
+        btn.textContent = choice;
+        btn.addEventListener('click', () => submitQuizChoice(moduleObj, idx));
+        quizChoices.appendChild(btn);
+      });
+
+      quizMeta.textContent = `Question ${quizIndex + 1}/${checks.length} | Score ${quizScore}/${checks.length}`;
+    }
+
+    function submitQuizChoice(moduleObj, choiceIdx) {
+      if (quizAnswered) return;
+      const checks = moduleObj.knowledge_checks || [];
+      if (!checks.length || quizIndex >= checks.length) return;
+
+      const q = checks[quizIndex];
+      const correctIdx = Number(q.answer);
+      const correct = choiceIdx === correctIdx;
+      quizAnswered = true;
+      if (correct) quizScore += 1;
+
+      const buttons = Array.from(quizChoices.querySelectorAll('.quiz-choice'));
+      buttons.forEach((btn, idx) => {
+        if (idx === correctIdx) btn.classList.add('correct');
+        if (idx === choiceIdx && !correct) btn.classList.add('incorrect');
+        btn.disabled = true;
+      });
+
+      const correctText = q.choices[correctIdx];
+      quizExplain.classList.remove('hidden');
+      quizExplain.textContent = `${correct ? 'Correct.' : 'Not quite.'} ${q.explain} Correct answer: ${correctText}`;
+
+      quizMeta.textContent = `Question ${quizIndex + 1}/${checks.length} | Score ${quizScore}/${checks.length}`;
+      if (quizIndex < checks.length - 1) {
+        quizNextBtn.classList.remove('hidden');
+      } else {
+        quizIndex = checks.length;
+        renderQuizQuestion(moduleObj);
+      }
     }
 
     function clearCanvas(canvas) {
@@ -1575,6 +2015,24 @@ WEB_TEMPLATE = """<!doctype html>
       document.getElementById('ohmBtn').addEventListener('click', runOhmCalc);
       document.getElementById('dbBtn').addEventListener('click', runDbCalc);
       document.getElementById('elementSelect').addEventListener('change', renderObjectives);
+      superBeginnerToggle.addEventListener('change', () => {
+        superBeginner = superBeginnerToggle.checked;
+        superRevealStage = superBeginner ? 0 : 3;
+        applySuperBeginnerVisibility();
+      });
+      revealDetailBtn.addEventListener('click', () => {
+        if (!superBeginner) return;
+        superRevealStage = Math.min(3, superRevealStage + 1);
+        applySuperBeginnerVisibility();
+      });
+      quizNextBtn.addEventListener('click', () => {
+        if (!quizAnswered) return;
+        quizIndex += 1;
+        renderQuizQuestion(roadmap[activeModule]);
+      });
+      quizResetBtn.addEventListener('click', () => {
+        resetQuizForModule(roadmap[activeModule]);
+      });
 
       loadSyllabus().catch((err) => {
         document.getElementById('objectiveBody').innerHTML = `<tr><td colspan=\"3\">${err.message}</td></tr>`;
