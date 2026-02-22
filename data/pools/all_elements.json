@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "generated_at_utc": "2026-02-22T00:09:19.039290+00:00",
+    "generated_at_utc": "2026-02-22T13:42:56.553836+00:00",
     "elements": [
       2,
       3,
@@ -15,7 +15,7 @@
   "elements": {
     "2": {
       "metadata": {
-        "generated_at_utc": "2026-02-22T00:09:16.961222+00:00",
+        "generated_at_utc": "2026-02-22T13:42:54.958112+00:00",
         "element": 2,
         "license_class": "Technician",
         "pool_cycle": "2026-2030",
@@ -34,6 +34,162 @@
           "T8": 4,
           "T9": 2,
           "T0": 3
+        },
+        "syllabus": {
+          "subelements": {
+            "T1": {
+              "title": "COMMISSION\u2019S RULES",
+              "exam_questions": 6,
+              "group_count": 6,
+              "pool_questions": 68,
+              "groups": {
+                "T1A": "Purpose and permissible use of the Amateur Radio Service; Operator/primary station license grant; Meanings of basic terms used in FCC rules; Interference; RACES rules; Phonetics; Frequency Coordinator; Beacon",
+                "T1B": "Frequency allocations; Emission modes; Spectrum sharing; Transmissions near band edges; Contacting the International Space Station; Power output",
+                "T1C": "Licensing: classes, sequential and vanity call sign systems, places where the Amateur Radio Service is regulated by the FCC, name and address on FCC license database, term, renewal, grace period, maintaining mailing address; International communications",
+                "T1D": "Authorized and prohibited transmissions; Sale of equipment",
+                "T1E": "Control operator: eligibility, designating, privileges, duties, location, required; Control point; Control types: automatic, remote",
+                "T1F": "Station identification; Repeaters; Third-party communications; Club stations; FCC inspection"
+              }
+            },
+            "T2": {
+              "title": "OPERATING PROCEDURES",
+              "exam_questions": 3,
+              "group_count": 3,
+              "pool_questions": 37,
+              "groups": {
+                "T2A": "Station operation: choosing an operating frequency, calling another station, test transmissions; Band plans: calling frequencies, repeater offsets",
+                "T2B": "VHF/UHF operating practices: FM repeater, simplex, reverse splits; Access tones: CTCSS, DTMF; DMR operation; Resolving operating problems; Q signals",
+                "T2C": "Public service: emergency operations, applicability of FCC rules, RACES and ARES, net and traffic procedures, operating restrictions during emergencies, use of phonetics in message handling"
+              }
+            },
+            "T3": {
+              "title": "RADIO WAVE PROPAGATION",
+              "exam_questions": 3,
+              "group_count": 3,
+              "pool_questions": 35,
+              "groups": {
+                "T3A": "Radio wave characteristics: how a radio signal travels, fading, multipath, polarization, wavelength vs absorption; Antenna orientation",
+                "T3B": "Electromagnetic wave properties: wavelength vs frequency, nature and velocity of electromagnetic waves, relationship of wavelength and frequency; Electromagnetic Spectrum Definitions: UHF, VHF, HF",
+                "T3C": "Propagation modes: sporadic E, meteor scatter, auroral propagation, tropospheric ducting; F region skip; Line of sight and radio horizon"
+              }
+            },
+            "T4": {
+              "title": "AMATEUR RADIO PRACTICES",
+              "exam_questions": 2,
+              "group_count": 2,
+              "pool_questions": 23,
+              "groups": {
+                "T4A": "Station setup: connecting a microphone, RF power meter, a power source, a computer, digital equipment, an SWR meter; RF grounding; Mobile radio installation",
+                "T4B": "Operating controls: frequency tuning, use of filters, squelch function, AGC, memory channels, noise blanker, microphone gain, receiver incremental tuning (RIT), bandwidth selection, scanning function; Digital transceiver configuration; DMR code plugs and talk groups"
+              }
+            },
+            "T5": {
+              "title": "ELECTRICAL PRINCIPLES",
+              "exam_questions": 4,
+              "group_count": 4,
+              "pool_questions": 50,
+              "groups": {
+                "T5A": "Current and voltage: terminology and units, conductors and insulators, alternating and direct current",
+                "T5B": "Math for electronics: conversion of electrical units, decibels",
+                "T5C": "Capacitance and inductance terminology and units; Radio frequency definition and units; Impedance definition and units; Calculating power",
+                "T5D": "Ohm\u2019s Law; Series and parallel circuits"
+              }
+            },
+            "T6": {
+              "title": "ELECTRONIC AND ELECTRICAL COMPONENTS",
+              "exam_questions": 4,
+              "group_count": 4,
+              "pool_questions": 46,
+              "groups": {
+                "T6A": "Fixed and variable resistors; Capacitors; Inductors; Fuses; Switches; Batteries",
+                "T6B": "Semiconductors: basic principles and applications of solid-state devices, diodes and transistors; Gain",
+                "T6C": "Circuit diagrams: use of term schematic, basic structure; Schematic symbols of basic components",
+                "T6D": "Component functions: rectifiers, relays, voltage regulators, meters, indicators, integrated circuits, transformers; Resonant circuit; Shielding"
+              }
+            },
+            "T7": {
+              "title": "PRACTICAL CIRCUITS",
+              "exam_questions": 4,
+              "group_count": 4,
+              "pool_questions": 44,
+              "groups": {
+                "T7A": "Station equipment: receivers, transceivers, transmitter amplifiers, RF preamplifiers, transverters; Basic radio circuit concepts and terminology: sensitivity, selectivity, mixers, oscillators, Push-To-Talk (PTT), VFO, modulation",
+                "T7B": "Symptoms, causes, and cures of common transmitter and receiver problems: overload and overdrive, distortion, interference and consumer electronics, RF feedback",
+                "T7C": "Antenna and transmission line measurements and troubleshooting: measuring SWR, effects of high SWR, causes of feed line failures; Basic coaxial cable characteristics; Use of dummy loads when testing",
+                "T7D": "Using basic test instruments: voltmeter, ammeter, and ohmmeter; Soldering"
+              }
+            },
+            "T8": {
+              "title": "SIGNALS AND EMISSIONS",
+              "exam_questions": 4,
+              "group_count": 4,
+              "pool_questions": 47,
+              "groups": {
+                "T8A": "Basic characteristics of FM and SSB; Bandwidth of various modulation modes: CW, SSB, FM, fast-scan TV; Choice of emission type: selection of USB vs LSB, use of SSB for weak signal work, use of FM for VHF packet and repeaters",
+                "T8B": "Amateur satellite operation: Doppler shift, basic orbits, operating protocols, modulation mode selection, transmitter power considerations, telemetry, satellite tracking programs, beacons, uplink and downlink mode definitions, spin fading, definition of \u201cLEO\u201d, setting uplink power",
+                "T8C": "Operating activities: radio direction finding, contests, linking over the internet, exchanging grid locators",
+                "T8D": "Non-voice and digital communications: image signals and definition of NTSC, CW, packet radio, PSK, APRS, error detection and correction, amateur radio networking, DMR, WSJT modes, Broadband-Hamnet"
+              }
+            },
+            "T9": {
+              "title": "ANTENNAS AND FEED LINES",
+              "exam_questions": 2,
+              "group_count": 2,
+              "pool_questions": 23,
+              "groups": {
+                "T9A": "Antennas: vertical and horizontal polarization, concept of antenna gain, definition and types of beam antennas, antenna loading, common portable and mobile antennas, relationships between resonant length and frequency, dipole pattern",
+                "T9B": "Feed lines: types, attenuation vs frequency, selecting; SWR concepts; Antenna tuners (couplers); RF Connectors: selecting, weather protection"
+              }
+            },
+            "T0": {
+              "title": "SAFETY",
+              "exam_questions": 3,
+              "group_count": 3,
+              "pool_questions": 36,
+              "groups": {
+                "T0A": "Power circuits and hazards: hazardous voltages, fuses and circuit breakers, grounding, electrical code compliance; Lightning protection; Battery safety",
+                "T0B": "Antenna safety: tower safety and grounding, installing antennas, antenna supports",
+                "T0C": "RF hazards: radiation exposure, proximity to antennas, recognized safe power levels, radiation types, duty cycle"
+              }
+            }
+          },
+          "group_objectives": {
+            "T0A": "Power circuits and hazards: hazardous voltages, fuses and circuit breakers, grounding, electrical code compliance; Lightning protection; Battery safety",
+            "T0B": "Antenna safety: tower safety and grounding, installing antennas, antenna supports",
+            "T0C": "RF hazards: radiation exposure, proximity to antennas, recognized safe power levels, radiation types, duty cycle",
+            "T1A": "Purpose and permissible use of the Amateur Radio Service; Operator/primary station license grant; Meanings of basic terms used in FCC rules; Interference; RACES rules; Phonetics; Frequency Coordinator; Beacon",
+            "T1B": "Frequency allocations; Emission modes; Spectrum sharing; Transmissions near band edges; Contacting the International Space Station; Power output",
+            "T1C": "Licensing: classes, sequential and vanity call sign systems, places where the Amateur Radio Service is regulated by the FCC, name and address on FCC license database, term, renewal, grace period, maintaining mailing address; International communications",
+            "T1D": "Authorized and prohibited transmissions; Sale of equipment",
+            "T1E": "Control operator: eligibility, designating, privileges, duties, location, required; Control point; Control types: automatic, remote",
+            "T1F": "Station identification; Repeaters; Third-party communications; Club stations; FCC inspection",
+            "T2A": "Station operation: choosing an operating frequency, calling another station, test transmissions; Band plans: calling frequencies, repeater offsets",
+            "T2B": "VHF/UHF operating practices: FM repeater, simplex, reverse splits; Access tones: CTCSS, DTMF; DMR operation; Resolving operating problems; Q signals",
+            "T2C": "Public service: emergency operations, applicability of FCC rules, RACES and ARES, net and traffic procedures, operating restrictions during emergencies, use of phonetics in message handling",
+            "T3A": "Radio wave characteristics: how a radio signal travels, fading, multipath, polarization, wavelength vs absorption; Antenna orientation",
+            "T3B": "Electromagnetic wave properties: wavelength vs frequency, nature and velocity of electromagnetic waves, relationship of wavelength and frequency; Electromagnetic Spectrum Definitions: UHF, VHF, HF",
+            "T3C": "Propagation modes: sporadic E, meteor scatter, auroral propagation, tropospheric ducting; F region skip; Line of sight and radio horizon",
+            "T4A": "Station setup: connecting a microphone, RF power meter, a power source, a computer, digital equipment, an SWR meter; RF grounding; Mobile radio installation",
+            "T4B": "Operating controls: frequency tuning, use of filters, squelch function, AGC, memory channels, noise blanker, microphone gain, receiver incremental tuning (RIT), bandwidth selection, scanning function; Digital transceiver configuration; DMR code plugs and talk groups",
+            "T5A": "Current and voltage: terminology and units, conductors and insulators, alternating and direct current",
+            "T5B": "Math for electronics: conversion of electrical units, decibels",
+            "T5C": "Capacitance and inductance terminology and units; Radio frequency definition and units; Impedance definition and units; Calculating power",
+            "T5D": "Ohm\u2019s Law; Series and parallel circuits",
+            "T6A": "Fixed and variable resistors; Capacitors; Inductors; Fuses; Switches; Batteries",
+            "T6B": "Semiconductors: basic principles and applications of solid-state devices, diodes and transistors; Gain",
+            "T6C": "Circuit diagrams: use of term schematic, basic structure; Schematic symbols of basic components",
+            "T6D": "Component functions: rectifiers, relays, voltage regulators, meters, indicators, integrated circuits, transformers; Resonant circuit; Shielding",
+            "T7A": "Station equipment: receivers, transceivers, transmitter amplifiers, RF preamplifiers, transverters; Basic radio circuit concepts and terminology: sensitivity, selectivity, mixers, oscillators, Push-To-Talk (PTT), VFO, modulation",
+            "T7B": "Symptoms, causes, and cures of common transmitter and receiver problems: overload and overdrive, distortion, interference and consumer electronics, RF feedback",
+            "T7C": "Antenna and transmission line measurements and troubleshooting: measuring SWR, effects of high SWR, causes of feed line failures; Basic coaxial cable characteristics; Use of dummy loads when testing",
+            "T7D": "Using basic test instruments: voltmeter, ammeter, and ohmmeter; Soldering",
+            "T8A": "Basic characteristics of FM and SSB; Bandwidth of various modulation modes: CW, SSB, FM, fast-scan TV; Choice of emission type: selection of USB vs LSB, use of SSB for weak signal work, use of FM for VHF packet and repeaters",
+            "T8B": "Amateur satellite operation: Doppler shift, basic orbits, operating protocols, modulation mode selection, transmitter power considerations, telemetry, satellite tracking programs, beacons, uplink and downlink mode definitions, spin fading, definition of \u201cLEO\u201d, setting uplink power",
+            "T8C": "Operating activities: radio direction finding, contests, linking over the internet, exchanging grid locators",
+            "T8D": "Non-voice and digital communications: image signals and definition of NTSC, CW, packet radio, PSK, APRS, error detection and correction, amateur radio networking, DMR, WSJT modes, Broadband-Hamnet",
+            "T9A": "Antennas: vertical and horizontal polarization, concept of antenna gain, definition and types of beam antennas, antenna loading, common portable and mobile antennas, relationships between resonant length and frequency, dipole pattern",
+            "T9B": "Feed lines: types, attenuation vs frequency, selecting; SWR concepts; Antenna tuners (couplers); RF Connectors: selecting, weather protection"
+          }
         }
       },
       "questions": [
@@ -6569,7 +6725,7 @@
     },
     "3": {
       "metadata": {
-        "generated_at_utc": "2026-02-22T00:09:17.609273+00:00",
+        "generated_at_utc": "2026-02-22T13:42:55.602885+00:00",
         "element": 3,
         "license_class": "General",
         "pool_cycle": "2023-2027",
@@ -6588,6 +6744,162 @@
           "G8": 4,
           "G9": 2,
           "G0": 3
+        },
+        "syllabus": {
+          "subelements": {
+            "G1": {
+              "title": "COMMISSION\u2019S RULES",
+              "exam_questions": 5,
+              "group_count": 5,
+              "pool_questions": 54,
+              "groups": {
+                "G1A": "\u2013 General class control operator frequency privileges; primary and secondary allocations",
+                "G1B": "\u2013 Antenna structure limitations; good engineering and good amateur practice; beacon operation; prohibited transmissions; retransmitting radio signals",
+                "G1C": "\u2013 Transmitter power regulations; data emission standards; 60-meter operation requirements",
+                "G1D": "\u2013 Volunteer Examiners and Volunteer Examiner Coordinators; temporary identification; element credit; remote operation",
+                "G1E": "\u2013 Control categories; repeater regulations; third-party rules; ITU regions; automatically controlled digital station"
+              }
+            },
+            "G9": {
+              "title": "ANTENNAS AND FEED LINES",
+              "exam_questions": 4,
+              "group_count": 4,
+              "pool_questions": 46,
+              "groups": {
+                "G9A": "\u2013 Feed lines: characteristic impedance and attenuation; standing wave ratio (SWR) calculation, measurement, and effects; antenna feed point matching",
+                "G9B": "\u2013 Basic dipole and monopole antennas",
+                "G9C": "\u2013 Directional antennas",
+                "G9D": "\u2013 Specialized antenna types and applications"
+              }
+            },
+            "G2": {
+              "title": "OPERATING PROCEDURES",
+              "exam_questions": 5,
+              "group_count": 5,
+              "pool_questions": 60,
+              "groups": {
+                "G2A": "\u2013 Phone operating procedures: USB/LSB conventions, breaking into a contact, transmitter setup for voice operation; answering DX stations",
+                "G2B": "\u2013 Operating effectively; band plans; drills and emergencies; RACES operation",
+                "G2C": "\u2013 CW operating procedures and procedural signals; Q signals; full break-in",
+                "G2D": "\u2013 Volunteer Monitor Program; HF operations",
+                "G2E": "\u2013 Digital mode operating procedures"
+              }
+            },
+            "G3": {
+              "title": "RADIO WAVE PROPAGATION",
+              "exam_questions": 3,
+              "group_count": 3,
+              "pool_questions": 37,
+              "groups": {
+                "G3A": "\u2013 Sunspots and solar radiation; geomagnetic field and stability indices",
+                "G3B": "\u2013 Maximum Usable Frequency; Lowest Usable Frequency; short path and long path propagation; determining propagation conditions; ionospheric refraction",
+                "G3C": "\u2013 Ionospheric regions; critical angle and frequency; HF scatter; near vertical incidence skywave (NVIS)"
+              }
+            },
+            "G4": {
+              "title": "AMATEUR RADIO PRACTICES",
+              "exam_questions": 5,
+              "group_count": 5,
+              "pool_questions": 60,
+              "groups": {
+                "G4A": "\u2013 Station configuration and operation",
+                "G4B": "\u2013 Tests and test equipment",
+                "G4C": "\u2013 Interference to consumer electronics; grounding and bonding",
+                "G4D": "\u2013 Speech processors; S meters; sideband operation near band edges",
+                "G4E": "\u2013 Mobile and portable HF stations; alternative energy source operation"
+              }
+            },
+            "G5": {
+              "title": "ELECTRICAL PRINCIPLES",
+              "exam_questions": 3,
+              "group_count": 3,
+              "pool_questions": 40,
+              "groups": {
+                "G5A": "\u2013 Reactance; inductance; capacitance; impedance; impedance transformation; resonance",
+                "G5B": "\u2013 The decibel; current and voltage dividers; electrical power calculations; sine wave root-mean-square (RMS) values; PEP calculations",
+                "G5C": "\u2013 Resistors, capacitors, and inductors in series and parallel; transformers"
+              }
+            },
+            "G6": {
+              "title": "CIRCUIT COMPONENTS",
+              "exam_questions": 2,
+              "group_count": 2,
+              "pool_questions": 23,
+              "groups": {
+                "G6A": "\u2013 Resistors; capacitors; inductors; rectifiers; solid-state diodes and transistors; vacuum tubes; batteries",
+                "G6B": "\u2013 Analog and digital integrated circuits (ICs); microwave ICs (MMICs); display devices; RF connectors; ferrite cores"
+              }
+            },
+            "G7": {
+              "title": "PRACTICAL CIRCUITS",
+              "exam_questions": 3,
+              "group_count": 3,
+              "pool_questions": 38,
+              "groups": {
+                "G7A": "\u2013 Power supplies; schematic symbols",
+                "G7B": "\u2013 Digital circuits; amplifiers and oscillators",
+                "G7C": "\u2013 Transceiver design; filters; oscillators; digital signal processing (DSP)"
+              }
+            },
+            "G8": {
+              "title": "SIGNALS AND EMISSIONS",
+              "exam_questions": 3,
+              "group_count": 3,
+              "pool_questions": 42,
+              "groups": {
+                "G8A": "\u2013 Carriers and modulation: AM, FM, and single sideband; modulation envelope; digital modulation; overmodulation; link budgets and link margins",
+                "G8B": "\u2013 Frequency changing; bandwidths of various modes; deviation; intermodulation",
+                "G8C": "\u2013 Digital emission modes"
+              }
+            },
+            "G0": {
+              "title": "ELECTRICAL AND RF SAFETY",
+              "exam_questions": 2,
+              "group_count": 2,
+              "pool_questions": 25,
+              "groups": {
+                "G0A": "\u2013 RF safety principles, rules, and guidelines; routine station evaluation",
+                "G0B": "\u2013 Station safety: electrical shock, grounding, fusing, interlocks, and wiring; antenna and tower safety"
+              }
+            }
+          },
+          "group_objectives": {
+            "G0A": "\u2013 RF safety principles, rules, and guidelines; routine station evaluation",
+            "G0B": "\u2013 Station safety: electrical shock, grounding, fusing, interlocks, and wiring; antenna and tower safety",
+            "G1A": "\u2013 General class control operator frequency privileges; primary and secondary allocations",
+            "G1B": "\u2013 Antenna structure limitations; good engineering and good amateur practice; beacon operation; prohibited transmissions; retransmitting radio signals",
+            "G1C": "\u2013 Transmitter power regulations; data emission standards; 60-meter operation requirements",
+            "G1D": "\u2013 Volunteer Examiners and Volunteer Examiner Coordinators; temporary identification; element credit; remote operation",
+            "G1E": "\u2013 Control categories; repeater regulations; third-party rules; ITU regions; automatically controlled digital station",
+            "G2A": "\u2013 Phone operating procedures: USB/LSB conventions, breaking into a contact, transmitter setup for voice operation; answering DX stations",
+            "G2B": "\u2013 Operating effectively; band plans; drills and emergencies; RACES operation",
+            "G2C": "\u2013 CW operating procedures and procedural signals; Q signals; full break-in",
+            "G2D": "\u2013 Volunteer Monitor Program; HF operations",
+            "G2E": "\u2013 Digital mode operating procedures",
+            "G3A": "\u2013 Sunspots and solar radiation; geomagnetic field and stability indices",
+            "G3B": "\u2013 Maximum Usable Frequency; Lowest Usable Frequency; short path and long path propagation; determining propagation conditions; ionospheric refraction",
+            "G3C": "\u2013 Ionospheric regions; critical angle and frequency; HF scatter; near vertical incidence skywave (NVIS)",
+            "G4A": "\u2013 Station configuration and operation",
+            "G4B": "\u2013 Tests and test equipment",
+            "G4C": "\u2013 Interference to consumer electronics; grounding and bonding",
+            "G4D": "\u2013 Speech processors; S meters; sideband operation near band edges",
+            "G4E": "\u2013 Mobile and portable HF stations; alternative energy source operation",
+            "G5A": "\u2013 Reactance; inductance; capacitance; impedance; impedance transformation; resonance",
+            "G5B": "\u2013 The decibel; current and voltage dividers; electrical power calculations; sine wave root-mean-square (RMS) values; PEP calculations",
+            "G5C": "\u2013 Resistors, capacitors, and inductors in series and parallel; transformers",
+            "G6A": "\u2013 Resistors; capacitors; inductors; rectifiers; solid-state diodes and transistors; vacuum tubes; batteries",
+            "G6B": "\u2013 Analog and digital integrated circuits (ICs); microwave ICs (MMICs); display devices; RF connectors; ferrite cores",
+            "G7A": "\u2013 Power supplies; schematic symbols",
+            "G7B": "\u2013 Digital circuits; amplifiers and oscillators",
+            "G7C": "\u2013 Transceiver design; filters; oscillators; digital signal processing (DSP)",
+            "G8A": "\u2013 Carriers and modulation: AM, FM, and single sideband; modulation envelope; digital modulation; overmodulation; link budgets and link margins",
+            "G8B": "\u2013 Frequency changing; bandwidths of various modes; deviation; intermodulation",
+            "G8C": "\u2013 Digital emission modes",
+            "G9A": "\u2013 Feed lines: characteristic impedance and attenuation; standing wave ratio (SWR) calculation, measurement, and effects; antenna feed point matching",
+            "G9B": "\u2013 Basic dipole and monopole antennas",
+            "G9C": "\u2013 Directional antennas",
+            "G9D": "\u2013 Specialized antenna types and applications"
+          }
         }
       },
       "questions": [
@@ -13363,7 +13675,7 @@
     },
     "4": {
       "metadata": {
-        "generated_at_utc": "2026-02-22T00:09:19.036326+00:00",
+        "generated_at_utc": "2026-02-22T13:42:56.550651+00:00",
         "element": 4,
         "license_class": "Amateur Extra",
         "pool_cycle": "2024-2028",
@@ -13382,6 +13694,192 @@
           "E8": 4,
           "E9": 4,
           "E0": 5
+        },
+        "syllabus": {
+          "subelements": {
+            "E1": {
+              "title": "COMMISSION RULES",
+              "exam_questions": 6,
+              "group_count": 6,
+              "pool_questions": 68,
+              "groups": {
+                "E1A": "Frequency privileges; signal frequency range; automatic message forwarding; stations aboard ships or aircraft; power restriction on 630- and 2200-meter bands",
+                "E1B": "Station restrictions and special operations: restrictions on station location; general operating restrictions; spurious emissions; antenna structure restrictions; RACES operations",
+                "E1C": "Automatic and remote control; band-specific regulations; operating in and communicating with foreign countries; spurious emission standards; HF modulation index limit; band-specific rules",
+                "E1D": "Amateur Space and Earth stations; telemetry and telecommand rules; identification of balloon transmissions; one-way communications",
+                "E1E": "Volunteer examiner program: definitions; qualifications; preparation and administration of exams; reimbursement; accreditation; question pools; documentation requirements",
+                "E1F": "Miscellaneous rules: external RF power amplifiers; prohibited communications; spread spectrum; auxiliary stations; Canadian amateurs operating in the US; special temporary authority"
+              }
+            },
+            "E2": {
+              "title": "OPERATING PROCEDURES",
+              "exam_questions": 5,
+              "group_count": 5,
+              "pool_questions": 61,
+              "groups": {
+                "E2A": "Amateur radio in space: amateur satellites; orbital mechanics; frequencies and modes; satellite hardware; satellite operations",
+                "E2B": "Television practices: fast-scan television standards and techniques; slow scan television standards and techniques",
+                "E2C": "Contest and DX operating; remote operation techniques; log data format; contact confirmation; RF network systems",
+                "E2D": "Operating methods: digital modes and procedures for VHF and UHF; APRS; EME procedures; meteor scatter procedures",
+                "E2E": "Operating methods: digital modes and procedures for HF"
+              }
+            },
+            "E3": {
+              "title": "RADIO WAVE PROPAGATION",
+              "exam_questions": 3,
+              "group_count": 3,
+              "pool_questions": 39,
+              "groups": {
+                "E3A": "Electromagnetic Waves and Specialized Propagation: Earth-Moon-Earth (EME) communications; meteor scatter; microwave tropospheric and scatter propagation; auroral propagation; daily variation of ionospheric propagation; circular polarization",
+                "E3B": "Transequatorial propagation; long-path propagation; ordinary and extraordinary waves; chordal hop; sporadic-E mechanisms; ground-wave propagation",
+                "E3C": "Propagation prediction and reporting: radio horizon; effects of space-weather phenomena"
+              }
+            },
+            "E4": {
+              "title": "AMATEUR PRACTICES",
+              "exam_questions": 5,
+              "group_count": 5,
+              "pool_questions": 64,
+              "groups": {
+                "E4A": "Test equipment: analog and digital instruments; spectrum analyzers; antenna analyzers; oscilloscopes; RF measurements",
+                "E4B": "Measurement technique and limitations: instrument accuracy and performance limitations; probes; techniques to minimize errors; measurement of Q; instrument calibration; S parameters; vector network analyzers; RF signals",
+                "E4C": "Receiver performance: phase noise, noise floor, image rejection, minimum detectable signal (MDS), increasing signal-to-noise ratio and dynamic range, noise figure, reciprocal mixing; selectivity; SDR non- linearity; use of attenuators at low frequencies",
+                "E4D": "Receiver performance characteristics: dynamic range; intermodulation and cross-modulation interference; third-order intercept; desensitization; preselector; sensitivity; link margin",
+                "E4E": "Noise and interference: external RF interference; electrical and computer noise; line noise; DSP filtering and noise reduction; common-mode current; surge protectors; single point ground panel"
+              }
+            },
+            "E5": {
+              "title": "ELECTRICAL PRINCIPLES",
+              "exam_questions": 4,
+              "group_count": 4,
+              "pool_questions": 49,
+              "groups": {
+                "E5A": "Resonance and Q: characteristics of resonant circuits; series and parallel resonance; definitions and effects of Q; half-power bandwidth",
+                "E5B": "Time constants and phase relationships: RL and RC time constants; phase angle in reactive circuits and components; admittance and susceptance",
+                "E5C": "Coordinate systems and phasors in electronics: rectangular coordinates; polar coordinates; phasors; logarithmic axes",
+                "E5D": "RF effects in components and circuits: skin effect; real and reactive power; electrical length of conductors"
+              }
+            },
+            "E6": {
+              "title": "CIRCUIT COMPONENTS",
+              "exam_questions": 6,
+              "group_count": 6,
+              "pool_questions": 68,
+              "groups": {
+                "E6A": "Semiconductor materials and devices: semiconductor materials; bipolar junction transistors; operation and types of field-effect transistors",
+                "E6B": "Diodes",
+                "E6C": "Digital ICs: families of digital ICs; gates; programmable logic devices",
+                "E6D": "Inductors and piezoelectricity: permeability, core material and configuration; transformers; piezoelectric devices",
+                "E6E": "Semiconductor materials and packages for RF use",
+                "E6F": "Electro-optical technology: photoconductivity; photovoltaic devices; optical sensors and encoders; optically isolated switching"
+              }
+            },
+            "E7": {
+              "title": "PRACTICAL CIRCUITS",
+              "exam_questions": 8,
+              "group_count": 8,
+              "pool_questions": 99,
+              "groups": {
+                "E7A": "Digital circuits: digital circuit principles and logic circuits; classes of logic elements; positive and negative logic; frequency dividers; truth tables",
+                "E7B": "Amplifiers: class of operation; vacuum tube and solid-state circuits; distortion and intermodulation; spurious and parasitic suppression; switching-type amplifiers",
+                "E7C": "Filters and matching networks: types of networks; types of filters; filter applications; filter characteristics; impedance matching",
+                "E7D": "Power supplies and voltage regulators; solar array charge controllers",
+                "E7E": "Modulation and demodulation: reactance, phase, and balanced modulators; detectors; mixers",
+                "E7F": "Software defined radio fundamentals: digital signal processing (DSP) filtering, modulation, and demodulation; analog-digital conversion; digital filters",
+                "E7G": "Operational amplifiers: characteristics and applications",
+                "E7H": "Oscillators and signal sources: types of oscillators; synthesizers and phase-locked loops; direct digital synthesizers; stabilizing thermal drift; microphonics; high-accuracy oscillators"
+              }
+            },
+            "E8": {
+              "title": "SIGNALS AND EMISSIONS",
+              "exam_questions": 4,
+              "group_count": 4,
+              "pool_questions": 48,
+              "groups": {
+                "E8A": "Fourier analysis; RMS measurements; average RF power and peak envelope power (PEP); analog/digital conversion",
+                "E8B": "Modulation and demodulation: modulation methods; modulation index and deviation ratio; frequency- and time-division multiplexing; orthogonal frequency-division multiplexing (OFDM)",
+                "E8C": "Digital signals: digital communication modes; information rate vs. bandwidth; error correction; constellation diagrams",
+                "E8D": "Keying defects and overmodulation of digital signals; digital codes; spread spectrum"
+              }
+            },
+            "E9": {
+              "title": "ANTENNAS AND TRANSMISSION LINES",
+              "exam_questions": 8,
+              "group_count": 8,
+              "pool_questions": 94,
+              "groups": {
+                "E9A": "Basic antenna parameters: radiation resistance, gain, beamwidth, efficiency; effective radiated power (ERP) and effective isotropic radiated power (EIRP)",
+                "E9B": "Antenna patterns and designs: azimuth and elevation patterns; gain as a function of pattern; antenna modeling",
+                "E9C": "Practical wire antennas; folded dipoles; phased arrays; effects of ground near antennas",
+                "E9D": "Yagi antennas; parabolic reflectors; feed point impedance and loading of electrically short antennas; antenna Q; RF grounding",
+                "E9E": "Impedance matching: matching antennas to feed lines; phasing lines; power dividers",
+                "E9F": "Transmission lines: characteristics of open and shorted feed lines; coax versus open wire; velocity factor; electrical length; coaxial cable dielectrics; microstrip",
+                "E9G": "The Smith chart",
+                "E9H": "Receiving antennas: radio direction finding (RDF) techniques; Beverage antennas; single- and multiple-turn loops"
+              }
+            },
+            "E0": {
+              "title": "SAFETY -",
+              "exam_questions": 1,
+              "group_count": 1,
+              "pool_questions": 12,
+              "groups": {
+                "E0A": "Safety: RF radiation hazards; hazardous materials; grounding"
+              }
+            }
+          },
+          "group_objectives": {
+            "E0A": "Safety: RF radiation hazards; hazardous materials; grounding",
+            "E1A": "Frequency privileges; signal frequency range; automatic message forwarding; stations aboard ships or aircraft; power restriction on 630- and 2200-meter bands",
+            "E1B": "Station restrictions and special operations: restrictions on station location; general operating restrictions; spurious emissions; antenna structure restrictions; RACES operations",
+            "E1C": "Automatic and remote control; band-specific regulations; operating in and communicating with foreign countries; spurious emission standards; HF modulation index limit; band-specific rules",
+            "E1D": "Amateur Space and Earth stations; telemetry and telecommand rules; identification of balloon transmissions; one-way communications",
+            "E1E": "Volunteer examiner program: definitions; qualifications; preparation and administration of exams; reimbursement; accreditation; question pools; documentation requirements",
+            "E1F": "Miscellaneous rules: external RF power amplifiers; prohibited communications; spread spectrum; auxiliary stations; Canadian amateurs operating in the US; special temporary authority",
+            "E2A": "Amateur radio in space: amateur satellites; orbital mechanics; frequencies and modes; satellite hardware; satellite operations",
+            "E2B": "Television practices: fast-scan television standards and techniques; slow scan television standards and techniques",
+            "E2C": "Contest and DX operating; remote operation techniques; log data format; contact confirmation; RF network systems",
+            "E2D": "Operating methods: digital modes and procedures for VHF and UHF; APRS; EME procedures; meteor scatter procedures",
+            "E2E": "Operating methods: digital modes and procedures for HF",
+            "E3A": "Electromagnetic Waves and Specialized Propagation: Earth-Moon-Earth (EME) communications; meteor scatter; microwave tropospheric and scatter propagation; auroral propagation; daily variation of ionospheric propagation; circular polarization",
+            "E3B": "Transequatorial propagation; long-path propagation; ordinary and extraordinary waves; chordal hop; sporadic-E mechanisms; ground-wave propagation",
+            "E3C": "Propagation prediction and reporting: radio horizon; effects of space-weather phenomena",
+            "E4A": "Test equipment: analog and digital instruments; spectrum analyzers; antenna analyzers; oscilloscopes; RF measurements",
+            "E4B": "Measurement technique and limitations: instrument accuracy and performance limitations; probes; techniques to minimize errors; measurement of Q; instrument calibration; S parameters; vector network analyzers; RF signals",
+            "E4C": "Receiver performance: phase noise, noise floor, image rejection, minimum detectable signal (MDS), increasing signal-to-noise ratio and dynamic range, noise figure, reciprocal mixing; selectivity; SDR non- linearity; use of attenuators at low frequencies",
+            "E4D": "Receiver performance characteristics: dynamic range; intermodulation and cross-modulation interference; third-order intercept; desensitization; preselector; sensitivity; link margin",
+            "E4E": "Noise and interference: external RF interference; electrical and computer noise; line noise; DSP filtering and noise reduction; common-mode current; surge protectors; single point ground panel",
+            "E5A": "Resonance and Q: characteristics of resonant circuits; series and parallel resonance; definitions and effects of Q; half-power bandwidth",
+            "E5B": "Time constants and phase relationships: RL and RC time constants; phase angle in reactive circuits and components; admittance and susceptance",
+            "E5C": "Coordinate systems and phasors in electronics: rectangular coordinates; polar coordinates; phasors; logarithmic axes",
+            "E5D": "RF effects in components and circuits: skin effect; real and reactive power; electrical length of conductors",
+            "E6A": "Semiconductor materials and devices: semiconductor materials; bipolar junction transistors; operation and types of field-effect transistors",
+            "E6B": "Diodes",
+            "E6C": "Digital ICs: families of digital ICs; gates; programmable logic devices",
+            "E6D": "Inductors and piezoelectricity: permeability, core material and configuration; transformers; piezoelectric devices",
+            "E6E": "Semiconductor materials and packages for RF use",
+            "E6F": "Electro-optical technology: photoconductivity; photovoltaic devices; optical sensors and encoders; optically isolated switching",
+            "E7A": "Digital circuits: digital circuit principles and logic circuits; classes of logic elements; positive and negative logic; frequency dividers; truth tables",
+            "E7B": "Amplifiers: class of operation; vacuum tube and solid-state circuits; distortion and intermodulation; spurious and parasitic suppression; switching-type amplifiers",
+            "E7C": "Filters and matching networks: types of networks; types of filters; filter applications; filter characteristics; impedance matching",
+            "E7D": "Power supplies and voltage regulators; solar array charge controllers",
+            "E7E": "Modulation and demodulation: reactance, phase, and balanced modulators; detectors; mixers",
+            "E7F": "Software defined radio fundamentals: digital signal processing (DSP) filtering, modulation, and demodulation; analog-digital conversion; digital filters",
+            "E7G": "Operational amplifiers: characteristics and applications",
+            "E7H": "Oscillators and signal sources: types of oscillators; synthesizers and phase-locked loops; direct digital synthesizers; stabilizing thermal drift; microphonics; high-accuracy oscillators",
+            "E8A": "Fourier analysis; RMS measurements; average RF power and peak envelope power (PEP); analog/digital conversion",
+            "E8B": "Modulation and demodulation: modulation methods; modulation index and deviation ratio; frequency- and time-division multiplexing; orthogonal frequency-division multiplexing (OFDM)",
+            "E8C": "Digital signals: digital communication modes; information rate vs. bandwidth; error correction; constellation diagrams",
+            "E8D": "Keying defects and overmodulation of digital signals; digital codes; spread spectrum",
+            "E9A": "Basic antenna parameters: radiation resistance, gain, beamwidth, efficiency; effective radiated power (ERP) and effective isotropic radiated power (EIRP)",
+            "E9B": "Antenna patterns and designs: azimuth and elevation patterns; gain as a function of pattern; antenna modeling",
+            "E9C": "Practical wire antennas; folded dipoles; phased arrays; effects of ground near antennas",
+            "E9D": "Yagi antennas; parabolic reflectors; feed point impedance and loading of electrically short antennas; antenna Q; RF grounding",
+            "E9E": "Impedance matching: matching antennas to feed lines; phasing lines; power dividers",
+            "E9F": "Transmission lines: characteristics of open and shorted feed lines; coax versus open wire; velocity factor; electrical length; coaxial cable dielectrics; microstrip",
+            "E9G": "The Smith chart",
+            "E9H": "Receiving antennas: radio direction finding (RDF) techniques; Beverage antennas; single- and multiple-turn loops"
+          }
         }
       },
       "questions": [

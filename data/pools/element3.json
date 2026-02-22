@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "generated_at_utc": "2026-02-22T00:09:17.609273+00:00",
+    "generated_at_utc": "2026-02-22T13:42:55.602885+00:00",
     "element": 3,
     "license_class": "General",
     "pool_cycle": "2023-2027",
@@ -19,6 +19,162 @@
       "G8": 4,
       "G9": 2,
       "G0": 3
+    },
+    "syllabus": {
+      "subelements": {
+        "G1": {
+          "title": "COMMISSION\u2019S RULES",
+          "exam_questions": 5,
+          "group_count": 5,
+          "pool_questions": 54,
+          "groups": {
+            "G1A": "\u2013 General class control operator frequency privileges; primary and secondary allocations",
+            "G1B": "\u2013 Antenna structure limitations; good engineering and good amateur practice; beacon operation; prohibited transmissions; retransmitting radio signals",
+            "G1C": "\u2013 Transmitter power regulations; data emission standards; 60-meter operation requirements",
+            "G1D": "\u2013 Volunteer Examiners and Volunteer Examiner Coordinators; temporary identification; element credit; remote operation",
+            "G1E": "\u2013 Control categories; repeater regulations; third-party rules; ITU regions; automatically controlled digital station"
+          }
+        },
+        "G9": {
+          "title": "ANTENNAS AND FEED LINES",
+          "exam_questions": 4,
+          "group_count": 4,
+          "pool_questions": 46,
+          "groups": {
+            "G9A": "\u2013 Feed lines: characteristic impedance and attenuation; standing wave ratio (SWR) calculation, measurement, and effects; antenna feed point matching",
+            "G9B": "\u2013 Basic dipole and monopole antennas",
+            "G9C": "\u2013 Directional antennas",
+            "G9D": "\u2013 Specialized antenna types and applications"
+          }
+        },
+        "G2": {
+          "title": "OPERATING PROCEDURES",
+          "exam_questions": 5,
+          "group_count": 5,
+          "pool_questions": 60,
+          "groups": {
+            "G2A": "\u2013 Phone operating procedures: USB/LSB conventions, breaking into a contact, transmitter setup for voice operation; answering DX stations",
+            "G2B": "\u2013 Operating effectively; band plans; drills and emergencies; RACES operation",
+            "G2C": "\u2013 CW operating procedures and procedural signals; Q signals; full break-in",
+            "G2D": "\u2013 Volunteer Monitor Program; HF operations",
+            "G2E": "\u2013 Digital mode operating procedures"
+          }
+        },
+        "G3": {
+          "title": "RADIO WAVE PROPAGATION",
+          "exam_questions": 3,
+          "group_count": 3,
+          "pool_questions": 37,
+          "groups": {
+            "G3A": "\u2013 Sunspots and solar radiation; geomagnetic field and stability indices",
+            "G3B": "\u2013 Maximum Usable Frequency; Lowest Usable Frequency; short path and long path propagation; determining propagation conditions; ionospheric refraction",
+            "G3C": "\u2013 Ionospheric regions; critical angle and frequency; HF scatter; near vertical incidence skywave (NVIS)"
+          }
+        },
+        "G4": {
+          "title": "AMATEUR RADIO PRACTICES",
+          "exam_questions": 5,
+          "group_count": 5,
+          "pool_questions": 60,
+          "groups": {
+            "G4A": "\u2013 Station configuration and operation",
+            "G4B": "\u2013 Tests and test equipment",
+            "G4C": "\u2013 Interference to consumer electronics; grounding and bonding",
+            "G4D": "\u2013 Speech processors; S meters; sideband operation near band edges",
+            "G4E": "\u2013 Mobile and portable HF stations; alternative energy source operation"
+          }
+        },
+        "G5": {
+          "title": "ELECTRICAL PRINCIPLES",
+          "exam_questions": 3,
+          "group_count": 3,
+          "pool_questions": 40,
+          "groups": {
+            "G5A": "\u2013 Reactance; inductance; capacitance; impedance; impedance transformation; resonance",
+            "G5B": "\u2013 The decibel; current and voltage dividers; electrical power calculations; sine wave root-mean-square (RMS) values; PEP calculations",
+            "G5C": "\u2013 Resistors, capacitors, and inductors in series and parallel; transformers"
+          }
+        },
+        "G6": {
+          "title": "CIRCUIT COMPONENTS",
+          "exam_questions": 2,
+          "group_count": 2,
+          "pool_questions": 23,
+          "groups": {
+            "G6A": "\u2013 Resistors; capacitors; inductors; rectifiers; solid-state diodes and transistors; vacuum tubes; batteries",
+            "G6B": "\u2013 Analog and digital integrated circuits (ICs); microwave ICs (MMICs); display devices; RF connectors; ferrite cores"
+          }
+        },
+        "G7": {
+          "title": "PRACTICAL CIRCUITS",
+          "exam_questions": 3,
+          "group_count": 3,
+          "pool_questions": 38,
+          "groups": {
+            "G7A": "\u2013 Power supplies; schematic symbols",
+            "G7B": "\u2013 Digital circuits; amplifiers and oscillators",
+            "G7C": "\u2013 Transceiver design; filters; oscillators; digital signal processing (DSP)"
+          }
+        },
+        "G8": {
+          "title": "SIGNALS AND EMISSIONS",
+          "exam_questions": 3,
+          "group_count": 3,
+          "pool_questions": 42,
+          "groups": {
+            "G8A": "\u2013 Carriers and modulation: AM, FM, and single sideband; modulation envelope; digital modulation; overmodulation; link budgets and link margins",
+            "G8B": "\u2013 Frequency changing; bandwidths of various modes; deviation; intermodulation",
+            "G8C": "\u2013 Digital emission modes"
+          }
+        },
+        "G0": {
+          "title": "ELECTRICAL AND RF SAFETY",
+          "exam_questions": 2,
+          "group_count": 2,
+          "pool_questions": 25,
+          "groups": {
+            "G0A": "\u2013 RF safety principles, rules, and guidelines; routine station evaluation",
+            "G0B": "\u2013 Station safety: electrical shock, grounding, fusing, interlocks, and wiring; antenna and tower safety"
+          }
+        }
+      },
+      "group_objectives": {
+        "G0A": "\u2013 RF safety principles, rules, and guidelines; routine station evaluation",
+        "G0B": "\u2013 Station safety: electrical shock, grounding, fusing, interlocks, and wiring; antenna and tower safety",
+        "G1A": "\u2013 General class control operator frequency privileges; primary and secondary allocations",
+        "G1B": "\u2013 Antenna structure limitations; good engineering and good amateur practice; beacon operation; prohibited transmissions; retransmitting radio signals",
+        "G1C": "\u2013 Transmitter power regulations; data emission standards; 60-meter operation requirements",
+        "G1D": "\u2013 Volunteer Examiners and Volunteer Examiner Coordinators; temporary identification; element credit; remote operation",
+        "G1E": "\u2013 Control categories; repeater regulations; third-party rules; ITU regions; automatically controlled digital station",
+        "G2A": "\u2013 Phone operating procedures: USB/LSB conventions, breaking into a contact, transmitter setup for voice operation; answering DX stations",
+        "G2B": "\u2013 Operating effectively; band plans; drills and emergencies; RACES operation",
+        "G2C": "\u2013 CW operating procedures and procedural signals; Q signals; full break-in",
+        "G2D": "\u2013 Volunteer Monitor Program; HF operations",
+        "G2E": "\u2013 Digital mode operating procedures",
+        "G3A": "\u2013 Sunspots and solar radiation; geomagnetic field and stability indices",
+        "G3B": "\u2013 Maximum Usable Frequency; Lowest Usable Frequency; short path and long path propagation; determining propagation conditions; ionospheric refraction",
+        "G3C": "\u2013 Ionospheric regions; critical angle and frequency; HF scatter; near vertical incidence skywave (NVIS)",
+        "G4A": "\u2013 Station configuration and operation",
+        "G4B": "\u2013 Tests and test equipment",
+        "G4C": "\u2013 Interference to consumer electronics; grounding and bonding",
+        "G4D": "\u2013 Speech processors; S meters; sideband operation near band edges",
+        "G4E": "\u2013 Mobile and portable HF stations; alternative energy source operation",
+        "G5A": "\u2013 Reactance; inductance; capacitance; impedance; impedance transformation; resonance",
+        "G5B": "\u2013 The decibel; current and voltage dividers; electrical power calculations; sine wave root-mean-square (RMS) values; PEP calculations",
+        "G5C": "\u2013 Resistors, capacitors, and inductors in series and parallel; transformers",
+        "G6A": "\u2013 Resistors; capacitors; inductors; rectifiers; solid-state diodes and transistors; vacuum tubes; batteries",
+        "G6B": "\u2013 Analog and digital integrated circuits (ICs); microwave ICs (MMICs); display devices; RF connectors; ferrite cores",
+        "G7A": "\u2013 Power supplies; schematic symbols",
+        "G7B": "\u2013 Digital circuits; amplifiers and oscillators",
+        "G7C": "\u2013 Transceiver design; filters; oscillators; digital signal processing (DSP)",
+        "G8A": "\u2013 Carriers and modulation: AM, FM, and single sideband; modulation envelope; digital modulation; overmodulation; link budgets and link margins",
+        "G8B": "\u2013 Frequency changing; bandwidths of various modes; deviation; intermodulation",
+        "G8C": "\u2013 Digital emission modes",
+        "G9A": "\u2013 Feed lines: characteristic impedance and attenuation; standing wave ratio (SWR) calculation, measurement, and effects; antenna feed point matching",
+        "G9B": "\u2013 Basic dipole and monopole antennas",
+        "G9C": "\u2013 Directional antennas",
+        "G9D": "\u2013 Specialized antenna types and applications"
+      }
     }
   },
   "questions": [

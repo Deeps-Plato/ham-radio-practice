@@ -1,6 +1,6 @@
 {
   "metadata": {
-    "generated_at_utc": "2026-02-22T00:09:16.961222+00:00",
+    "generated_at_utc": "2026-02-22T13:42:54.958112+00:00",
     "element": 2,
     "license_class": "Technician",
     "pool_cycle": "2026-2030",
@@ -19,6 +19,162 @@
       "T8": 4,
       "T9": 2,
       "T0": 3
+    },
+    "syllabus": {
+      "subelements": {
+        "T1": {
+          "title": "COMMISSION\u2019S RULES",
+          "exam_questions": 6,
+          "group_count": 6,
+          "pool_questions": 68,
+          "groups": {
+            "T1A": "Purpose and permissible use of the Amateur Radio Service; Operator/primary station license grant; Meanings of basic terms used in FCC rules; Interference; RACES rules; Phonetics; Frequency Coordinator; Beacon",
+            "T1B": "Frequency allocations; Emission modes; Spectrum sharing; Transmissions near band edges; Contacting the International Space Station; Power output",
+            "T1C": "Licensing: classes, sequential and vanity call sign systems, places where the Amateur Radio Service is regulated by the FCC, name and address on FCC license database, term, renewal, grace period, maintaining mailing address; International communications",
+            "T1D": "Authorized and prohibited transmissions; Sale of equipment",
+            "T1E": "Control operator: eligibility, designating, privileges, duties, location, required; Control point; Control types: automatic, remote",
+            "T1F": "Station identification; Repeaters; Third-party communications; Club stations; FCC inspection"
+          }
+        },
+        "T2": {
+          "title": "OPERATING PROCEDURES",
+          "exam_questions": 3,
+          "group_count": 3,
+          "pool_questions": 37,
+          "groups": {
+            "T2A": "Station operation: choosing an operating frequency, calling another station, test transmissions; Band plans: calling frequencies, repeater offsets",
+            "T2B": "VHF/UHF operating practices: FM repeater, simplex, reverse splits; Access tones: CTCSS, DTMF; DMR operation; Resolving operating problems; Q signals",
+            "T2C": "Public service: emergency operations, applicability of FCC rules, RACES and ARES, net and traffic procedures, operating restrictions during emergencies, use of phonetics in message handling"
+          }
+        },
+        "T3": {
+          "title": "RADIO WAVE PROPAGATION",
+          "exam_questions": 3,
+          "group_count": 3,
+          "pool_questions": 35,
+          "groups": {
+            "T3A": "Radio wave characteristics: how a radio signal travels, fading, multipath, polarization, wavelength vs absorption; Antenna orientation",
+            "T3B": "Electromagnetic wave properties: wavelength vs frequency, nature and velocity of electromagnetic waves, relationship of wavelength and frequency; Electromagnetic Spectrum Definitions: UHF, VHF, HF",
+            "T3C": "Propagation modes: sporadic E, meteor scatter, auroral propagation, tropospheric ducting; F region skip; Line of sight and radio horizon"
+          }
+        },
+        "T4": {
+          "title": "AMATEUR RADIO PRACTICES",
+          "exam_questions": 2,
+          "group_count": 2,
+          "pool_questions": 23,
+          "groups": {
+            "T4A": "Station setup: connecting a microphone, RF power meter, a power source, a computer, digital equipment, an SWR meter; RF grounding; Mobile radio installation",
+            "T4B": "Operating controls: frequency tuning, use of filters, squelch function, AGC, memory channels, noise blanker, microphone gain, receiver incremental tuning (RIT), bandwidth selection, scanning function; Digital transceiver configuration; DMR code plugs and talk groups"
+          }
+        },
+        "T5": {
+          "title": "ELECTRICAL PRINCIPLES",
+          "exam_questions": 4,
+          "group_count": 4,
+          "pool_questions": 50,
+          "groups": {
+            "T5A": "Current and voltage: terminology and units, conductors and insulators, alternating and direct current",
+            "T5B": "Math for electronics: conversion of electrical units, decibels",
+            "T5C": "Capacitance and inductance terminology and units; Radio frequency definition and units; Impedance definition and units; Calculating power",
+            "T5D": "Ohm\u2019s Law; Series and parallel circuits"
+          }
+        },
+        "T6": {
+          "title": "ELECTRONIC AND ELECTRICAL COMPONENTS",
+          "exam_questions": 4,
+          "group_count": 4,
+          "pool_questions": 46,
+          "groups": {
+            "T6A": "Fixed and variable resistors; Capacitors; Inductors; Fuses; Switches; Batteries",
+            "T6B": "Semiconductors: basic principles and applications of solid-state devices, diodes and transistors; Gain",
+            "T6C": "Circuit diagrams: use of term schematic, basic structure; Schematic symbols of basic components",
+            "T6D": "Component functions: rectifiers, relays, voltage regulators, meters, indicators, integrated circuits, transformers; Resonant circuit; Shielding"
+          }
+        },
+        "T7": {
+          "title": "PRACTICAL CIRCUITS",
+          "exam_questions": 4,
+          "group_count": 4,
+          "pool_questions": 44,
+          "groups": {
+            "T7A": "Station equipment: receivers, transceivers, transmitter amplifiers, RF preamplifiers, transverters; Basic radio circuit concepts and terminology: sensitivity, selectivity, mixers, oscillators, Push-To-Talk (PTT), VFO, modulation",
+            "T7B": "Symptoms, causes, and cures of common transmitter and receiver problems: overload and overdrive, distortion, interference and consumer electronics, RF feedback",
+            "T7C": "Antenna and transmission line measurements and troubleshooting: measuring SWR, effects of high SWR, causes of feed line failures; Basic coaxial cable characteristics; Use of dummy loads when testing",
+            "T7D": "Using basic test instruments: voltmeter, ammeter, and ohmmeter; Soldering"
+          }
+        },
+        "T8": {
+          "title": "SIGNALS AND EMISSIONS",
+          "exam_questions": 4,
+          "group_count": 4,
+          "pool_questions": 47,
+          "groups": {
+            "T8A": "Basic characteristics of FM and SSB; Bandwidth of various modulation modes: CW, SSB, FM, fast-scan TV; Choice of emission type: selection of USB vs LSB, use of SSB for weak signal work, use of FM for VHF packet and repeaters",
+            "T8B": "Amateur satellite operation: Doppler shift, basic orbits, operating protocols, modulation mode selection, transmitter power considerations, telemetry, satellite tracking programs, beacons, uplink and downlink mode definitions, spin fading, definition of \u201cLEO\u201d, setting uplink power",
+            "T8C": "Operating activities: radio direction finding, contests, linking over the internet, exchanging grid locators",
+            "T8D": "Non-voice and digital communications: image signals and definition of NTSC, CW, packet radio, PSK, APRS, error detection and correction, amateur radio networking, DMR, WSJT modes, Broadband-Hamnet"
+          }
+        },
+        "T9": {
+          "title": "ANTENNAS AND FEED LINES",
+          "exam_questions": 2,
+          "group_count": 2,
+          "pool_questions": 23,
+          "groups": {
+            "T9A": "Antennas: vertical and horizontal polarization, concept of antenna gain, definition and types of beam antennas, antenna loading, common portable and mobile antennas, relationships between resonant length and frequency, dipole pattern",
+            "T9B": "Feed lines: types, attenuation vs frequency, selecting; SWR concepts; Antenna tuners (couplers); RF Connectors: selecting, weather protection"
+          }
+        },
+        "T0": {
+          "title": "SAFETY",
+          "exam_questions": 3,
+          "group_count": 3,
+          "pool_questions": 36,
+          "groups": {
+            "T0A": "Power circuits and hazards: hazardous voltages, fuses and circuit breakers, grounding, electrical code compliance; Lightning protection; Battery safety",
+            "T0B": "Antenna safety: tower safety and grounding, installing antennas, antenna supports",
+            "T0C": "RF hazards: radiation exposure, proximity to antennas, recognized safe power levels, radiation types, duty cycle"
+          }
+        }
+      },
+      "group_objectives": {
+        "T0A": "Power circuits and hazards: hazardous voltages, fuses and circuit breakers, grounding, electrical code compliance; Lightning protection; Battery safety",
+        "T0B": "Antenna safety: tower safety and grounding, installing antennas, antenna supports",
+        "T0C": "RF hazards: radiation exposure, proximity to antennas, recognized safe power levels, radiation types, duty cycle",
+        "T1A": "Purpose and permissible use of the Amateur Radio Service; Operator/primary station license grant; Meanings of basic terms used in FCC rules; Interference; RACES rules; Phonetics; Frequency Coordinator; Beacon",
+        "T1B": "Frequency allocations; Emission modes; Spectrum sharing; Transmissions near band edges; Contacting the International Space Station; Power output",
+        "T1C": "Licensing: classes, sequential and vanity call sign systems, places where the Amateur Radio Service is regulated by the FCC, name and address on FCC license database, term, renewal, grace period, maintaining mailing address; International communications",
+        "T1D": "Authorized and prohibited transmissions; Sale of equipment",
+        "T1E": "Control operator: eligibility, designating, privileges, duties, location, required; Control point; Control types: automatic, remote",
+        "T1F": "Station identification; Repeaters; Third-party communications; Club stations; FCC inspection",
+        "T2A": "Station operation: choosing an operating frequency, calling another station, test transmissions; Band plans: calling frequencies, repeater offsets",
+        "T2B": "VHF/UHF operating practices: FM repeater, simplex, reverse splits; Access tones: CTCSS, DTMF; DMR operation; Resolving operating problems; Q signals",
+        "T2C": "Public service: emergency operations, applicability of FCC rules, RACES and ARES, net and traffic procedures, operating restrictions during emergencies, use of phonetics in message handling",
+        "T3A": "Radio wave characteristics: how a radio signal travels, fading, multipath, polarization, wavelength vs absorption; Antenna orientation",
+        "T3B": "Electromagnetic wave properties: wavelength vs frequency, nature and velocity of electromagnetic waves, relationship of wavelength and frequency; Electromagnetic Spectrum Definitions: UHF, VHF, HF",
+        "T3C": "Propagation modes: sporadic E, meteor scatter, auroral propagation, tropospheric ducting; F region skip; Line of sight and radio horizon",
+        "T4A": "Station setup: connecting a microphone, RF power meter, a power source, a computer, digital equipment, an SWR meter; RF grounding; Mobile radio installation",
+        "T4B": "Operating controls: frequency tuning, use of filters, squelch function, AGC, memory channels, noise blanker, microphone gain, receiver incremental tuning (RIT), bandwidth selection, scanning function; Digital transceiver configuration; DMR code plugs and talk groups",
+        "T5A": "Current and voltage: terminology and units, conductors and insulators, alternating and direct current",
+        "T5B": "Math for electronics: conversion of electrical units, decibels",
+        "T5C": "Capacitance and inductance terminology and units; Radio frequency definition and units; Impedance definition and units; Calculating power",
+        "T5D": "Ohm\u2019s Law; Series and parallel circuits",
+        "T6A": "Fixed and variable resistors; Capacitors; Inductors; Fuses; Switches; Batteries",
+        "T6B": "Semiconductors: basic principles and applications of solid-state devices, diodes and transistors; Gain",
+        "T6C": "Circuit diagrams: use of term schematic, basic structure; Schematic symbols of basic components",
+        "T6D": "Component functions: rectifiers, relays, voltage regulators, meters, indicators, integrated circuits, transformers; Resonant circuit; Shielding",
+        "T7A": "Station equipment: receivers, transceivers, transmitter amplifiers, RF preamplifiers, transverters; Basic radio circuit concepts and terminology: sensitivity, selectivity, mixers, oscillators, Push-To-Talk (PTT), VFO, modulation",
+        "T7B": "Symptoms, causes, and cures of common transmitter and receiver problems: overload and overdrive, distortion, interference and consumer electronics, RF feedback",
+        "T7C": "Antenna and transmission line measurements and troubleshooting: measuring SWR, effects of high SWR, causes of feed line failures; Basic coaxial cable characteristics; Use of dummy loads when testing",
+        "T7D": "Using basic test instruments: voltmeter, ammeter, and ohmmeter; Soldering",
+        "T8A": "Basic characteristics of FM and SSB; Bandwidth of various modulation modes: CW, SSB, FM, fast-scan TV; Choice of emission type: selection of USB vs LSB, use of SSB for weak signal work, use of FM for VHF packet and repeaters",
+        "T8B": "Amateur satellite operation: Doppler shift, basic orbits, operating protocols, modulation mode selection, transmitter power considerations, telemetry, satellite tracking programs, beacons, uplink and downlink mode definitions, spin fading, definition of \u201cLEO\u201d, setting uplink power",
+        "T8C": "Operating activities: radio direction finding, contests, linking over the internet, exchanging grid locators",
+        "T8D": "Non-voice and digital communications: image signals and definition of NTSC, CW, packet radio, PSK, APRS, error detection and correction, amateur radio networking, DMR, WSJT modes, Broadband-Hamnet",
+        "T9A": "Antennas: vertical and horizontal polarization, concept of antenna gain, definition and types of beam antennas, antenna loading, common portable and mobile antennas, relationships between resonant length and frequency, dipole pattern",
+        "T9B": "Feed lines: types, attenuation vs frequency, selecting; SWR concepts; Antenna tuners (couplers); RF Connectors: selecting, weather protection"
+      }
     }
   },
   "questions": [

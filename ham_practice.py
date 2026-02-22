@@ -91,6 +91,11 @@ POOL_CONFIG = {
 
 QUESTION_HEADER_RE = re.compile(r"^([TGE]\d[A-Z]\d{2})(?:\s+\(([ABCD])\))?(?:\s+\[([^\]]+)\])?\s*$")
 OPTION_RE = re.compile(r"^([ABCD])\.\s*(.*)$")
+SUBELEMENT_HEADER_RE = re.compile(
+    r"^SUBELEMENT\s+([TGE]\d)\s*[-–—]\s*(.+?)\s+\[(\d+)\s+exam questions?\s*[-–—]\s*(\d+)\s+groups?\](?:\s+(\d+)\s+Questions)?$",
+    flags=re.IGNORECASE,
+)
+GROUP_OBJECTIVE_RE = re.compile(r"^([TGE]\d[A-Z])\s+(.*)$")
 MISSED_PATH = Path("data/progress/missed_questions.json")
 
 
@@ -283,7 +288,83 @@ def parse_questions(text: str, element: int, class_name: str, first_question_id:
     return questions
 
 
-def write_pool_json(element: int, questions: List[Question], output_path: Path) -> None:
+def parse_syllabus(text: str, element_prefix: str) -> Dict[str, object]:
+    subelements: Dict[str, Dict[str, object]] = {}
+    current_subelement: Optional[str] = None
+    current_group: Optional[str] = None
+
+    for raw_line in text.splitlines():
+        line = _clean_text(raw_line)
+        if not line:
+            continue
+
+        if QUESTION_HEADER_RE.match(line):
+            if subelements:
+                break
+            continue
+
+        sub_match = SUBELEMENT_HEADER_RE.match(line)
+        if sub_match:
+            sub_id = sub_match.group(1)
+            if not sub_id.startswith(element_prefix):
+                current_subelement = None
+                current_group = None
+                continue
+
+            pool_questions_raw = sub_match.group(5)
+            next_entry: Dict[str, object] = {
+                "title": sub_match.group(2),
+                "exam_questions": int(sub_match.group(3)),
+                "group_count": int(sub_match.group(4)),
+                "pool_questions": int(pool_questions_raw) if pool_questions_raw else 0,
+                "groups": {},
+            }
+            existing_entry = subelements.get(sub_id)
+            if isinstance(existing_entry, dict) and existing_entry.get("groups"):
+                if int(existing_entry.get("pool_questions", 0)) == 0 and int(next_entry["pool_questions"]) > 0:
+                    existing_entry["pool_questions"] = int(next_entry["pool_questions"])
+                current_subelement = sub_id
+                current_group = None
+                continue
+
+            subelements[sub_id] = next_entry
+            current_subelement = sub_id
+            current_group = None
+            continue
+
+        if not current_subelement:
+            continue
+
+        group_match = GROUP_OBJECTIVE_RE.match(line)
+        if group_match and group_match.group(1).startswith(current_subelement):
+            group_id = group_match.group(1)
+            subelements[current_subelement]["groups"][group_id] = group_match.group(2)
+            current_group = group_id
+            continue
+
+        if current_group and not line.startswith("FCC Element"):
+            if line.startswith("Effective "):
+                continue
+            if re.match(r"^\d{4}-\d{4}\s+.*Class", line):
+                continue
+            existing = str(subelements[current_subelement]["groups"][current_group])
+            subelements[current_subelement]["groups"][current_group] = _clean_text(f"{existing} {line}")
+
+    group_objectives: Dict[str, str] = {}
+    for sub_id in sorted(subelements):
+        groups = subelements[sub_id]["groups"]
+        for group_id in sorted(groups):
+            group_objectives[group_id] = str(groups[group_id])
+
+    return {
+        "subelements": subelements,
+        "group_objectives": group_objectives,
+    }
+
+
+def write_pool_json(
+    element: int, questions: List[Question], syllabus: Dict[str, object], output_path: Path
+) -> None:
     config = POOL_CONFIG[element]
     payload = {
         "metadata": {
@@ -296,6 +377,7 @@ def write_pool_json(element: int, questions: List[Question], output_path: Path) 
             "exam_questions": config["exam_questions"],
             "pass_score": config["pass_score"],
             "blueprint": config["blueprint"],
+            "syllabus": syllabus,
         },
         "questions": [q.to_dict() for q in questions],
     }
@@ -303,13 +385,17 @@ def write_pool_json(element: int, questions: List[Question], output_path: Path) 
     output_path.write_text(json.dumps(payload, indent=2), encoding="utf-8")
 
 
-def load_questions_from_json(element: int) -> List[Dict[str, object]]:
+def load_pool_payload(element: int) -> Dict[str, object]:
     path = Path(f"data/pools/element{element}.json")
     if not path.exists():
         raise FileNotFoundError(
             f"Missing {path}. Run 'python ham_practice.py update-pools' first."
         )
-    payload = json.loads(path.read_text(encoding="utf-8"))
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def load_questions_from_json(element: int) -> List[Dict[str, object]]:
+    payload = load_pool_payload(element)
     return payload["questions"]
 
 
@@ -350,15 +436,76 @@ def build_missed_questions(
     return [q for q in questions if q["question_id"] in missed_ids]
 
 
+def build_teach_questions(
+    element: int,
+    questions: List[Dict[str, object]],
+    syllabus: Dict[str, object],
+    rng: random.Random,
+    num_questions: Optional[int],
+    questions_per_group: int,
+    subelement_filter: Optional[str],
+    group_filter: Optional[str],
+) -> List[Dict[str, object]]:
+    filtered = questions
+    if subelement_filter:
+        filtered = [q for q in filtered if str(q["subelement"]).upper() == subelement_filter.upper()]
+    if group_filter:
+        filtered = [q for q in filtered if str(q["group"]).upper() == group_filter.upper()]
+
+    by_group: Dict[str, List[Dict[str, object]]] = {}
+    for q in filtered:
+        by_group.setdefault(str(q["group"]), []).append(q)
+
+    selected: List[Dict[str, object]] = []
+    for group_id in sorted(by_group):
+        bucket = by_group[group_id]
+        pick = min(len(bucket), max(1, questions_per_group))
+        if num_questions is not None:
+            remaining = num_questions - len(selected)
+            if remaining <= 0:
+                break
+            pick = min(pick, remaining)
+        selected.extend(rng.sample(bucket, pick))
+
+    if num_questions is not None and len(selected) < num_questions and filtered:
+        remaining = num_questions - len(selected)
+        used_ids = {str(q["question_id"]) for q in selected}
+        extras = [q for q in filtered if str(q["question_id"]) not in used_ids]
+        if extras:
+            selected.extend(rng.sample(extras, min(remaining, len(extras))))
+
+    group_objectives = syllabus.get("group_objectives", {}) if isinstance(syllabus, dict) else {}
+    subelements = syllabus.get("subelements", {}) if isinstance(syllabus, dict) else {}
+
+    enriched: List[Dict[str, object]] = []
+    for q in selected:
+        q_copy = dict(q)
+        group_id = str(q_copy["group"])
+        sub_id = str(q_copy["subelement"])
+        sub_meta = subelements.get(sub_id, {}) if isinstance(subelements, dict) else {}
+        q_copy["teaching_focus"] = str(group_objectives.get(group_id, ""))
+        q_copy["teaching_section_title"] = str(sub_meta.get("title", ""))
+        enriched.append(q_copy)
+
+    rng.shuffle(enriched)
+    return enriched
+
+
 def select_questions_for_mode(
     element: int,
     mode: str,
     num_questions: Optional[int],
     rng: random.Random,
     missed_db: Dict[str, List[str]],
+    subelement_filter: Optional[str] = None,
+    group_filter: Optional[str] = None,
+    questions_per_group: int = 1,
 ) -> Tuple[List[Dict[str, object]], Optional[int], str]:
     config = POOL_CONFIG[element]
-    questions = load_questions_from_json(element)
+    payload = load_pool_payload(element)
+    questions = payload["questions"]
+    meta = payload.get("metadata", {})
+    syllabus = meta.get("syllabus", {})
 
     if mode == "exam":
         selected = build_exam_questions(element, questions, rng)
@@ -382,6 +529,20 @@ def select_questions_for_mode(
         label = f"Element {element} {config['name']} missed-questions review"
         return selected, None, label
 
+    if mode == "teach":
+        selected = build_teach_questions(
+            element=element,
+            questions=questions,
+            syllabus=syllabus,
+            rng=rng,
+            num_questions=num_questions,
+            questions_per_group=max(1, questions_per_group),
+            subelement_filter=subelement_filter,
+            group_filter=group_filter,
+        )
+        label = f"Element {element} {config['name']} guided teaching mode"
+        return selected, None, label
+
     raise ValueError(f"Unsupported mode '{mode}'")
 
 
@@ -390,6 +551,7 @@ def ask_question(
     index: int,
     total: int,
     wrap_width: int,
+    always_show_teaching: bool = False,
 ) -> Optional[bool]:
     print(f"\n[{index}/{total}] {q['question_id']} ({q['subelement']})")
     citation = q.get("citation")
@@ -415,11 +577,29 @@ def ask_question(
             else:
                 answer_key = q["answer_key"]
                 print(f"Incorrect. Correct answer: {answer_key}. {choices[answer_key]}")
+
+            if always_show_teaching:
+                focus = str(q.get("teaching_focus", "")).strip()
+                section = str(q.get("teaching_section_title", "")).strip()
+                if section:
+                    print(f"Section: {section}")
+                if focus:
+                    print(f"Teaching focus ({q['group']}): {focus}")
+                answer_key = q["answer_key"]
+                print(f"Knowledge point: {choices[answer_key]}")
             return correct
 
         if raw == "S":
             answer_key = q["answer_key"]
             print(f"Answer: {answer_key}. {choices[answer_key]}")
+            if always_show_teaching:
+                focus = str(q.get("teaching_focus", "")).strip()
+                section = str(q.get("teaching_section_title", "")).strip()
+                if section:
+                    print(f"Section: {section}")
+                if focus:
+                    print(f"Teaching focus ({q['group']}): {focus}")
+                print(f"Knowledge point: {choices[answer_key]}")
             return False
 
         if raw == "Q":
@@ -435,6 +615,9 @@ def run_session(
     rng: random.Random,
     wrap_width: int,
     missed_db: Dict[str, List[str]],
+    subelement_filter: Optional[str] = None,
+    group_filter: Optional[str] = None,
+    questions_per_group: int = 1,
 ) -> Dict[str, object]:
     selected, pass_score, label = select_questions_for_mode(
         element=element,
@@ -442,6 +625,9 @@ def run_session(
         num_questions=num_questions,
         rng=rng,
         missed_db=missed_db,
+        subelement_filter=subelement_filter,
+        group_filter=group_filter,
+        questions_per_group=questions_per_group,
     )
 
     print(f"\n=== {label} ===")
@@ -458,8 +644,9 @@ def run_session(
 
     correct = 0
     asked = 0
+    show_teaching = mode == "teach"
     for idx, q in enumerate(selected, start=1):
-        result = ask_question(q, idx, len(selected), wrap_width)
+        result = ask_question(q, idx, len(selected), wrap_width, always_show_teaching=show_teaching)
         if result is None:
             break
 
@@ -504,6 +691,7 @@ def command_update_pools(args: argparse.Namespace) -> int:
 
         print(f"Parsing Element {element} question pool...")
         text = extract_pdf_text(raw_pdf_path)
+        syllabus = parse_syllabus(text=text, element_prefix=str(config["first_question_id"])[0:1])
         questions = parse_questions(
             text=text,
             element=element,
@@ -515,7 +703,7 @@ def command_update_pools(args: argparse.Namespace) -> int:
             raise ValueError(f"No questions parsed for Element {element}")
 
         output = Path(f"data/pools/element{element}.json")
-        write_pool_json(element, questions, output)
+        write_pool_json(element, questions, syllabus, output)
 
         all_counts[element] = len(questions)
         print(f"Wrote {output} with {len(questions)} questions")
@@ -554,6 +742,9 @@ def command_practice(args: argparse.Namespace) -> int:
             rng=rng,
             wrap_width=args.width,
             missed_db=missed_db,
+            subelement_filter=args.subelement,
+            group_filter=args.group,
+            questions_per_group=args.questions_per_group,
         )
         summaries.append(summary)
 
@@ -584,6 +775,42 @@ def command_stats(_args: argparse.Namespace) -> int:
         print(f"  missed currently tracked: {len(missed_db.get(str(element), []))}")
         for subelement in sorted(by_subelement):
             print(f"  {subelement}: {by_subelement[subelement]}")
+
+    return 0
+
+
+def command_syllabus(args: argparse.Namespace) -> int:
+    elements = [2, 3, 4] if args.element == "all" else [int(args.element)]
+
+    for idx, element in enumerate(elements, start=1):
+        payload = load_pool_payload(element)
+        meta = payload.get("metadata", {})
+        syllabus = meta.get("syllabus", {})
+        subelements = syllabus.get("subelements", {}) if isinstance(syllabus, dict) else {}
+        config = POOL_CONFIG[element]
+
+        print(
+            f"Element {element} {config['name']} ({meta.get('pool_cycle', 'unknown cycle')})"
+        )
+
+        if not subelements:
+            print("  No parsed syllabus metadata found. Re-run update-pools.")
+            continue
+
+        for sub_id in sorted(subelements):
+            sub = subelements[sub_id]
+            title = sub.get("title", "")
+            exam_questions = sub.get("exam_questions", "?")
+            pool_questions = sub.get("pool_questions", "?")
+            print(f"  {sub_id} - {title}")
+            print(f"    Exam questions: {exam_questions} | Pool questions: {pool_questions}")
+
+            groups = sub.get("groups", {})
+            for group_id in sorted(groups):
+                print(f"    {group_id}: {groups[group_id]}")
+
+        if idx < len(elements):
+            print("")
 
     return 0
 
@@ -740,11 +967,24 @@ WEB_INDEX_HTML = """<!doctype html>
             <option value="exam">Exam-style</option>
             <option value="random">Random drill</option>
             <option value="missed">Missed-only review</option>
+            <option value="teach">Guided teaching</option>
           </select>
         </label>
         <label>
-          Count (optional for random/missed)
+          Count (optional for random/missed/teach)
           <input id="count" type="number" min="1" placeholder="Default auto" />
+        </label>
+        <label>
+          Teach Subelement (optional)
+          <input id="subelement" type="text" placeholder="e.g. T1, G4, E7" />
+        </label>
+        <label>
+          Teach Group (optional)
+          <input id="group" type="text" placeholder="e.g. T1A, G8D, E4C" />
+        </label>
+        <label>
+          Questions / Group (teach)
+          <input id="qpg" type="number" min="1" value="1" />
         </label>
         <button id="startBtn">Start Session</button>
       </div>
@@ -759,6 +999,7 @@ WEB_INDEX_HTML = """<!doctype html>
         <span id="citation" class="pill hidden"></span>
       </div>
       <div id="questionText" class="question"></div>
+      <div id="teachingFocus" class="footer hidden"></div>
       <div id="choices" class="choices"></div>
       <div id="feedback" class="feedback"></div>
       <div class="row">
@@ -785,6 +1026,9 @@ WEB_INDEX_HTML = """<!doctype html>
     const elementEl = document.getElementById('element');
     const modeEl = document.getElementById('mode');
     const countEl = document.getElementById('count');
+    const subelementInput = document.getElementById('subelement');
+    const groupInput = document.getElementById('group');
+    const qpgInput = document.getElementById('qpg');
     const startBtn = document.getElementById('startBtn');
 
     const sessionCard = document.getElementById('sessionCard');
@@ -795,6 +1039,7 @@ WEB_INDEX_HTML = """<!doctype html>
     const subelementEl = document.getElementById('subelement');
     const citationEl = document.getElementById('citation');
     const questionTextEl = document.getElementById('questionText');
+    const teachingFocusEl = document.getElementById('teachingFocus');
     const choicesEl = document.getElementById('choices');
     const feedbackEl = document.getElementById('feedback');
     const showAnswerBtn = document.getElementById('showAnswerBtn');
@@ -828,6 +1073,8 @@ WEB_INDEX_HTML = """<!doctype html>
       nextBtn.classList.add('hidden');
       showAnswerBtn.classList.remove('hidden');
       choicesEl.innerHTML = '';
+      teachingFocusEl.classList.add('hidden');
+      teachingFocusEl.textContent = '';
       summaryCard.classList.add('hidden');
       summaryCard.innerHTML = '';
     }
@@ -859,6 +1106,15 @@ WEB_INDEX_HTML = """<!doctype html>
       }
 
       questionTextEl.textContent = q.question;
+      const section = q.teaching_section_title || '';
+      const focus = q.teaching_focus || '';
+      if (focus || section) {
+        const parts = [];
+        if (section) parts.push(`Section: ${section}`);
+        if (focus) parts.push(`Teaching focus (${q.group}): ${focus}`);
+        teachingFocusEl.textContent = parts.join(' | ');
+        teachingFocusEl.classList.remove('hidden');
+      }
 
       for (const key of ['A', 'B', 'C', 'D']) {
         const btn = document.createElement('button');
@@ -909,6 +1165,11 @@ WEB_INDEX_HTML = """<!doctype html>
         feedbackEl.classList.add('bad');
       }
 
+      if (state.mode === 'teach') {
+        const knowledge = q.choices[q.answer_key];
+        feedbackEl.textContent += ` | Knowledge point: ${knowledge}`;
+      }
+
       showAnswerBtn.classList.add('hidden');
       nextBtn.classList.remove('hidden');
     }
@@ -929,6 +1190,11 @@ WEB_INDEX_HTML = """<!doctype html>
 
       feedbackEl.textContent = `Answer: ${q.answer_key}`;
       feedbackEl.classList.add('bad');
+
+      if (state.mode === 'teach') {
+        const knowledge = q.choices[q.answer_key];
+        feedbackEl.textContent += ` | Knowledge point: ${knowledge}`;
+      }
 
       showAnswerBtn.classList.add('hidden');
       nextBtn.classList.remove('hidden');
@@ -959,11 +1225,19 @@ WEB_INDEX_HTML = """<!doctype html>
       const element = elementEl.value;
       const mode = modeEl.value;
       const countRaw = countEl.value.trim();
+      const subelement = subelementInput.value.trim().toUpperCase();
+      const group = groupInput.value.trim().toUpperCase();
+      const qpgRaw = qpgInput.value.trim();
       const count = countRaw ? Number(countRaw) : null;
 
       let url = `/api/session?element=${encodeURIComponent(element)}&mode=${encodeURIComponent(mode)}`;
       if (count && count > 0) {
         url += `&num_questions=${encodeURIComponent(String(count))}`;
+      }
+      if (mode === 'teach') {
+        if (subelement) url += `&subelement=${encodeURIComponent(subelement)}`;
+        if (group) url += `&group=${encodeURIComponent(group)}`;
+        if (qpgRaw) url += `&questions_per_group=${encodeURIComponent(qpgRaw)}`;
       }
 
       try {
@@ -1050,6 +1324,9 @@ class HamPracticeHandler(BaseHTTPRequestHandler):
             element_str = params.get("element", ["2"])[0]
             mode = params.get("mode", ["exam"])[0]
             num_raw = params.get("num_questions", [""])[0]
+            subelement = params.get("subelement", [""])[0].strip() or None
+            group = params.get("group", [""])[0].strip() or None
+            qpg_raw = params.get("questions_per_group", ["1"])[0]
 
             try:
                 element = int(element_str)
@@ -1061,7 +1338,7 @@ class HamPracticeHandler(BaseHTTPRequestHandler):
                 self._send_json(400, {"error": "Unsupported element"})
                 return
 
-            if mode not in {"exam", "random", "missed"}:
+            if mode not in {"exam", "random", "missed", "teach"}:
                 self._send_json(400, {"error": "Unsupported mode"})
                 return
 
@@ -1074,12 +1351,21 @@ class HamPracticeHandler(BaseHTTPRequestHandler):
                     return
 
             try:
+                questions_per_group = int(qpg_raw)
+            except ValueError:
+                self._send_json(400, {"error": "questions_per_group must be an integer"})
+                return
+
+            try:
                 selected, pass_score, label = select_questions_for_mode(
                     element=element,
                     mode=mode,
                     num_questions=num_questions,
                     rng=random.Random(),
                     missed_db=load_missed_db(),
+                    subelement_filter=subelement,
+                    group_filter=group,
+                    questions_per_group=max(1, questions_per_group),
                 )
             except FileNotFoundError as exc:
                 self._send_json(400, {"error": str(exc)})
@@ -1172,15 +1458,33 @@ def build_parser() -> argparse.ArgumentParser:
     )
     practice.add_argument(
         "--mode",
-        choices=["exam", "random", "missed"],
+        choices=["exam", "random", "missed", "teach"],
         default="exam",
-        help="exam uses official distribution, random samples pool, missed reviews only previously missed",
+        help="exam uses official distribution; random samples pool; missed reviews wrong answers; teach is guided study by group",
     )
     practice.add_argument(
         "--num-questions",
         type=int,
         default=None,
-        help="Question count for random or missed mode (ignored in exam mode)",
+        help="Question count for random/missed/teach (ignored in exam mode)",
+    )
+    practice.add_argument(
+        "--subelement",
+        type=str,
+        default=None,
+        help="Optional filter for teach mode, e.g. T1, G4, E7",
+    )
+    practice.add_argument(
+        "--group",
+        type=str,
+        default=None,
+        help="Optional filter for teach mode, e.g. T1A, G8D, E4C",
+    )
+    practice.add_argument(
+        "--questions-per-group",
+        type=int,
+        default=1,
+        help="Teach mode: number of sampled questions per group before moving to next",
     )
     practice.add_argument(
         "--seed",
@@ -1198,6 +1502,15 @@ def build_parser() -> argparse.ArgumentParser:
 
     stats = subparsers.add_parser("stats", help="Show pool counts by element/subelement")
     stats.set_defaults(func=command_stats)
+
+    syllabus_cmd = subparsers.add_parser("syllabus", help="Print full syllabus objectives by element")
+    syllabus_cmd.add_argument(
+        "--element",
+        choices=["2", "3", "4", "all"],
+        default="all",
+        help="Element to print syllabus for",
+    )
+    syllabus_cmd.set_defaults(func=command_syllabus)
 
     web_cmd = subparsers.add_parser("web", help="Run a local web UI")
     web_cmd.add_argument("--host", default="127.0.0.1", help="Host bind address")

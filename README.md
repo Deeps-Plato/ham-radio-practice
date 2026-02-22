@@ -5,6 +5,8 @@ This project downloads/parses official NCVEC question pools and gives you:
 - CLI exam practice for Element 2, 3, and 4
 - Random drilling mode
 - Missed-questions-only review mode
+- Guided teaching mode (objective-based learning by syllabus group)
+- Full syllabus outline command (all subelements and group objectives)
 - Local browser web UI
 
 ## Current project path
@@ -36,6 +38,8 @@ Missed-question tracking file:
 
 - `data/progress/missed_questions.json`
 
+Syllabus metadata is stored inside each pool JSON under `metadata.syllabus`.
+
 ## CLI Usage
 
 Exam-style (official blueprint):
@@ -56,6 +60,24 @@ Missed-only review:
 .venv/bin/python ham_practice.py practice --element 3 --mode missed
 ```
 
+Guided teaching mode (one question per group by default):
+
+```bash
+.venv/bin/python ham_practice.py practice --element 2 --mode teach
+```
+
+Teach only one subelement:
+
+```bash
+.venv/bin/python ham_practice.py practice --element 2 --mode teach --subelement T1
+```
+
+Teach one specific group:
+
+```bash
+.venv/bin/python ham_practice.py practice --element 3 --mode teach --group G8D --questions-per-group 3
+```
+
 Run all elements in sequence:
 
 ```bash
@@ -66,6 +88,12 @@ Stats (includes missed counts):
 
 ```bash
 .venv/bin/python ham_practice.py stats
+```
+
+Print full syllabus objectives:
+
+```bash
+.venv/bin/python ham_practice.py syllabus --element all
 ```
 
 ## Web UI
@@ -81,6 +109,7 @@ Then open:
 - `http://127.0.0.1:8787`
 
 The web app supports exam/random/missed modes and updates your missed-question tracker automatically.
+The web app also supports guided teaching mode with syllabus focus and knowledge-point feedback.
 
 ## Refresh Source PDFs
 
