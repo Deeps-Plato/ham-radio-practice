@@ -135,6 +135,8 @@ Open:
 What it includes:
 
 - Step-by-step curriculum for radio physics and math fundamentals
+- Beginner-friendly plain-English explanations and common-mistake callouts for each module
+- Per-concept visuals: each module now has its own picture and graph
 - Interactive graphs (wave behavior, resonance/Q, inverse-square intuition, dB ladder)
 - Calculators (wavelength, Ohm's law/power, dB and FSPL)
 - Full official syllabus explorer by element/group objective

@@ -232,6 +232,159 @@ LEARNING_ROADMAP: List[Dict[str, Any]] = [
 ]
 
 
+BEGINNER_EXPANSIONS: Dict[str, Dict[str, Any]] = {
+    "m1": {
+        "plain_english": "Radio is just a repeating wiggle moving through space. Faster wiggles mean higher frequency and shorter physical size.",
+        "step_by_step": [
+            "Start with frequency: how many wiggles happen each second.",
+            "Convert to wavelength using 300/f(MHz).",
+            "Use wavelength to estimate antenna size (half-wave and quarter-wave).",
+            "Use that size intuition when picking bands and antennas.",
+        ],
+        "common_mistakes": [
+            "Thinking higher frequency means farther range in all cases.",
+            "Mixing up Hz, kHz, and MHz by factors of 1000.",
+            "Using antenna lengths without matching units.",
+        ],
+    },
+    "m2": {
+        "plain_english": "dB is a compact way to talk about 'how many times bigger or smaller' something is.",
+        "step_by_step": [
+            "Treat dB like comparison points, not raw power.",
+            "Memorize anchors: +3 dB about 2x, +10 dB = 10x.",
+            "Convert when needed between dB and ratio.",
+            "Add gains and subtract losses in a link budget.",
+        ],
+        "common_mistakes": [
+            "Adding linear power and dB values together.",
+            "Forgetting that negative dB means loss.",
+            "Confusing dB (ratio) with dBm (absolute power reference).",
+        ],
+    },
+    "m3": {
+        "plain_english": "Voltage pushes, current flows, resistance resists, and power is how hard your circuit is working.",
+        "step_by_step": [
+            "Pick any two of V, I, and R.",
+            "Solve the third with Ohm's law.",
+            "Compute power to understand heating and stress.",
+            "Use this to sanity-check your station wiring and loads.",
+        ],
+        "common_mistakes": [
+            "Using volts when the formula needs current.",
+            "Forgetting that power can rise quickly with current.",
+            "Ignoring resistor watt ratings in real circuits.",
+        ],
+    },
+    "m4": {
+        "plain_english": "At RF, capacitors and inductors act like frequency-dependent resistors, so circuits change behavior with frequency.",
+        "step_by_step": [
+            "Learn that XL grows with frequency while XC shrinks.",
+            "Find resonance where inductive and capacitive effects balance.",
+            "Relate sharpness of peak to Q and bandwidth.",
+            "Apply this to filters and tuning behavior.",
+        ],
+        "common_mistakes": [
+            "Treating capacitor/inductor behavior as fixed like a resistor.",
+            "Confusing high Q with 'always better' (it can be too narrow).",
+            "Ignoring component tolerances and real losses.",
+        ],
+    },
+    "m5": {
+        "plain_english": "Different modulation modes package information differently, so they take different amounts of spectrum.",
+        "step_by_step": [
+            "Identify which mode you are using (CW, SSB, FM, digital).",
+            "Estimate how wide that signal is.",
+            "Check band edges so your signal stays legal.",
+            "Pick the mode that best matches the communication goal.",
+        ],
+        "common_mistakes": [
+            "Using FM where narrow modes are better for weak signals.",
+            "Setting transmit audio too hot and splattering bandwidth.",
+            "Operating near band edges without margin.",
+        ],
+    },
+    "m6": {
+        "plain_english": "When line and load do not match, part of your signal bounces back and creates standing waves.",
+        "step_by_step": [
+            "Measure SWR to estimate mismatch severity.",
+            "Inspect feedline type, length, and frequency loss.",
+            "Adjust antenna/feedpoint before relying on tuner fixes.",
+            "Re-test after each change and compare results.",
+        ],
+        "common_mistakes": [
+            "Believing tuner fixes all mismatch losses everywhere.",
+            "Chasing perfect 1:1 SWR when 'good enough' is sufficient.",
+            "Ignoring coax loss at higher frequencies.",
+        ],
+    },
+    "m7": {
+        "plain_english": "Antennas shape where your power goes; gain is focusing, not creating energy.",
+        "step_by_step": [
+            "Choose desired radiation direction and polarization.",
+            "Select antenna type for that pattern.",
+            "Install with height and surroundings in mind.",
+            "Validate with on-air reports and measurements.",
+        ],
+        "common_mistakes": [
+            "Confusing gain claims with guaranteed better coverage everywhere.",
+            "Ignoring polarization mismatch penalties.",
+            "Placing antennas too close to noisy structures.",
+        ],
+    },
+    "m8": {
+        "plain_english": "Propagation is the radio 'weather' between stations, and it changes by time, frequency, and solar conditions.",
+        "step_by_step": [
+            "Start with time of day and target distance.",
+            "Choose likely bands based on current conditions.",
+            "Use reports/spotting tools to confirm openings.",
+            "Shift band or mode when conditions change.",
+        ],
+        "common_mistakes": [
+            "Assuming one band works all day the same way.",
+            "Ignoring solar/geomagnetic conditions.",
+            "Not adapting quickly when a band closes.",
+        ],
+    },
+    "m9": {
+        "plain_english": "A link budget is a scoreboard: start with TX power, then add gains and subtract losses to see if the signal arrives strong enough.",
+        "step_by_step": [
+            "Convert transmit power to dBm.",
+            "Add antenna gains and subtract line losses/path loss.",
+            "Compare result to receiver sensitivity and SNR needs.",
+            "Improve weakest points (antenna, feedline, noise floor).",
+        ],
+        "common_mistakes": [
+            "Mixing linear units and dB in one equation.",
+            "Ignoring receive-side noise and required SNR.",
+            "Assuming more power always solves bad system design.",
+        ],
+    },
+    "m10": {
+        "plain_english": "Safe station design means controlling exposure distance, electrical risk, and operating responsibility.",
+        "step_by_step": [
+            "Identify possible RF and electrical hazards.",
+            "Apply distance, power, and duty-cycle controls.",
+            "Implement grounding, bonding, and lightning safety.",
+            "Review station procedures regularly.",
+        ],
+        "common_mistakes": [
+            "Treating RF safety as optional at low power.",
+            "Skipping bonding/grounding checks.",
+            "Underestimating battery failure risks.",
+        ],
+    },
+}
+
+
+def get_learning_roadmap() -> List[Dict[str, Any]]:
+    merged: List[Dict[str, Any]] = []
+    for module in LEARNING_ROADMAP:
+        item = dict(module)
+        item.update(BEGINNER_EXPANSIONS.get(str(module.get("id")), {}))
+        merged.append(item)
+    return merged
+
+
 def load_syllabus_snapshot() -> Dict[str, Any]:
     snapshot: Dict[str, Any] = {}
     for element, config in POOL_CONFIG.items():
@@ -437,6 +590,30 @@ WEB_TEMPLATE = """<!doctype html>
       border-radius: 10px;
       background: #f8fbfb;
     }
+    .plain-box {
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 10px;
+      background: #fffdf7;
+      margin-bottom: 10px;
+    }
+    .beginner-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 12px;
+    }
+    .lesson-visual canvas {
+      width: 100%;
+      height: 240px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+    }
+    .caption {
+      margin-top: 6px;
+      font-size: 0.86rem;
+      color: var(--muted);
+    }
     .cmd {
       font-family: \"Lucida Console\", Monaco, monospace;
       font-size: 0.82rem;
@@ -476,6 +653,7 @@ WEB_TEMPLATE = """<!doctype html>
       .layout { grid-template-columns: 1fr; }
       .sticky { position: static; max-height: none; }
       .grid2 { grid-template-columns: 1fr; }
+      .beginner-grid { grid-template-columns: 1fr; }
       .calc-grid { grid-template-columns: 1fr; }
     }
   </style>
@@ -483,7 +661,7 @@ WEB_TEMPLATE = """<!doctype html>
 <body>
   <div class=\"wrap\">
     <h1>Ham Radio Learning Studio</h1>
-    <p class=\"sub\">A separate learning interface focused on physics, math, and radio-system intuition. Use this before or alongside the question practice app.</p>
+    <p class=\"sub\">A separate learning interface for people starting from zero physics background. Each lesson explains the idea in plain language, then adds equations, visuals, and practice bridges.</p>
 
     <div class=\"layout\">
       <aside class=\"card sticky\">
@@ -496,10 +674,35 @@ WEB_TEMPLATE = """<!doctype html>
           <div class=\"module-kicker\" id=\"moduleKicker\"></div>
           <h2 id=\"moduleTitle\"></h2>
           <p id=\"moduleGoal\"></p>
+          <div class=\"plain-box\">
+            <h3>In Plain English</h3>
+            <p id=\"modulePlain\"></p>
+          </div>
+          <div class=\"beginner-grid\">
+            <div>
+              <h3>Beginner Step-By-Step</h3>
+              <ol id=\"moduleSteps\"></ol>
+            </div>
+            <div>
+              <h3>Common Mistakes To Avoid</h3>
+              <ul id=\"moduleMistakes\"></ul>
+            </div>
+          </div>
           <h3>Key Concepts</h3>
           <ul id=\"modulePoints\"></ul>
           <h3>Core Equations</h3>
           <div id=\"moduleMath\"></div>
+          <h3>Concept Picture And Graph</h3>
+          <div class=\"beginner-grid lesson-visual\">
+            <div>
+              <canvas id=\"moduleSketchCanvas\" width=\"520\" height=\"240\"></canvas>
+              <div class=\"caption\" id=\"moduleSketchCaption\"></div>
+            </div>
+            <div>
+              <canvas id=\"moduleGraphCanvas\" width=\"520\" height=\"240\"></canvas>
+              <div class=\"caption\" id=\"moduleGraphCaption\"></div>
+            </div>
+          </div>
           <h3>Why This Matters On Exam Day</h3>
           <p id=\"moduleExam\"></p>
           <div class=\"roadmap-practice\">
@@ -622,10 +825,17 @@ WEB_TEMPLATE = """<!doctype html>
     const moduleKicker = document.getElementById('moduleKicker');
     const moduleTitle = document.getElementById('moduleTitle');
     const moduleGoal = document.getElementById('moduleGoal');
+    const modulePlain = document.getElementById('modulePlain');
+    const moduleSteps = document.getElementById('moduleSteps');
+    const moduleMistakes = document.getElementById('moduleMistakes');
     const modulePoints = document.getElementById('modulePoints');
     const moduleMath = document.getElementById('moduleMath');
     const moduleExam = document.getElementById('moduleExam');
     const modulePractice = document.getElementById('modulePractice');
+    const moduleSketchCanvas = document.getElementById('moduleSketchCanvas');
+    const moduleGraphCanvas = document.getElementById('moduleGraphCanvas');
+    const moduleSketchCaption = document.getElementById('moduleSketchCaption');
+    const moduleGraphCaption = document.getElementById('moduleGraphCaption');
 
     function safeNum(v) {
       const n = Number(v);
@@ -652,6 +862,21 @@ WEB_TEMPLATE = """<!doctype html>
       moduleKicker.textContent = `Step ${activeModule + 1} of ${roadmap.length}`;
       moduleTitle.textContent = m.title;
       moduleGoal.textContent = m.goal;
+      modulePlain.textContent = m.plain_english || m.goal;
+
+      moduleSteps.innerHTML = '';
+      (m.step_by_step || []).forEach((s) => {
+        const li = document.createElement('li');
+        li.textContent = s;
+        moduleSteps.appendChild(li);
+      });
+
+      moduleMistakes.innerHTML = '';
+      (m.common_mistakes || []).forEach((s) => {
+        const li = document.createElement('li');
+        li.textContent = s;
+        moduleMistakes.appendChild(li);
+      });
 
       modulePoints.innerHTML = '';
       m.key_points.forEach((p) => {
@@ -682,6 +907,407 @@ WEB_TEMPLATE = """<!doctype html>
         cmd.textContent = `.venv/bin/python ham_practice.py practice --mode teach --group ${g}`;
         modulePractice.appendChild(cmd);
       });
+
+      drawModuleVisuals(m);
+    }
+
+    function clearCanvas(canvas) {
+      const ctx = canvas.getContext('2d');
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+      return ctx;
+    }
+
+    function drawArrow(ctx, x1, y1, x2, y2, color) {
+      const angle = Math.atan2(y2 - y1, x2 - x1);
+      ctx.strokeStyle = color;
+      ctx.fillStyle = color;
+      ctx.lineWidth = 2;
+      ctx.beginPath();
+      ctx.moveTo(x1, y1);
+      ctx.lineTo(x2, y2);
+      ctx.stroke();
+      ctx.beginPath();
+      ctx.moveTo(x2, y2);
+      ctx.lineTo(x2 - 8 * Math.cos(angle - Math.PI / 6), y2 - 8 * Math.sin(angle - Math.PI / 6));
+      ctx.lineTo(x2 - 8 * Math.cos(angle + Math.PI / 6), y2 - 8 * Math.sin(angle + Math.PI / 6));
+      ctx.closePath();
+      ctx.fill();
+    }
+
+    function drawModuleVisuals(m) {
+      const sctx = clearCanvas(moduleSketchCanvas);
+      const gctx = clearCanvas(moduleGraphCanvas);
+      const sw = moduleSketchCanvas.width;
+      const sh = moduleSketchCanvas.height;
+      const gw = moduleGraphCanvas.width;
+      const gh = moduleGraphCanvas.height;
+
+      sctx.font = '13px \"Trebuchet MS\", sans-serif';
+      gctx.font = '12px \"Trebuchet MS\", sans-serif';
+
+      if (m.id === 'm1') {
+        sctx.fillStyle = '#334155';
+        sctx.fillRect(70, 170, 28, 40);
+        sctx.fillRect(420, 170, 28, 40);
+        sctx.strokeStyle = '#0f766e';
+        sctx.lineWidth = 3;
+        sctx.beginPath();
+        sctx.moveTo(84, 170);
+        sctx.lineTo(84, 90);
+        sctx.moveTo(434, 170);
+        sctx.lineTo(434, 90);
+        sctx.stroke();
+        for (let i = 0; i < 4; i++) {
+          sctx.beginPath();
+          sctx.strokeStyle = '#0f766e';
+          sctx.arc(255, 130, 30 + i * 16, Math.PI * 1.15, Math.PI * 1.85);
+          sctx.stroke();
+        }
+        sctx.fillStyle = '#334155';
+        sctx.fillText('TX antenna', 52, 224);
+        sctx.fillText('RX antenna', 400, 224);
+
+        drawAxes(gctx, gw, gh);
+        gctx.strokeStyle = '#b45309';
+        gctx.lineWidth = 2;
+        gctx.beginPath();
+        for (let x = 0; x <= gw - 48; x++) {
+          const f = 1 + (x / (gw - 48)) * 29;
+          const lam = 300 / f;
+          const yN = Math.min(1, lam / 300);
+          const px = 36 + x;
+          const py = (gh - 26) - yN * (gh - 54);
+          if (x === 0) gctx.moveTo(px, py);
+          else gctx.lineTo(px, py);
+        }
+        gctx.stroke();
+        moduleSketchCaption.textContent = 'Picture: radio energy leaving one antenna and arriving at another.';
+        moduleGraphCaption.textContent = 'Graph: as frequency goes up, wavelength goes down.';
+        return;
+      }
+
+      if (m.id === 'm2') {
+        sctx.fillStyle = '#334155';
+        sctx.fillRect(40, 90, 90, 50);
+        sctx.fillStyle = '#fff';
+        sctx.fillText('1 mW ref', 57, 120);
+        sctx.fillStyle = '#334155';
+        sctx.fillRect(220, 80, 90, 35);
+        sctx.fillRect(220, 130, 90, 35);
+        sctx.fillStyle = '#fff';
+        sctx.fillText('+6 dB', 248, 103);
+        sctx.fillText('-3 dB', 248, 153);
+        drawArrow(sctx, 130, 115, 220, 97, '#0f766e');
+        drawArrow(sctx, 130, 115, 220, 147, '#b45309');
+        sctx.fillStyle = '#334155';
+        sctx.fillText('dB is a ratio label', 340, 120);
+
+        drawAxes(gctx, gw, gh);
+        gctx.strokeStyle = '#0f766e';
+        gctx.lineWidth = 2;
+        gctx.beginPath();
+        for (let x = 0; x <= gw - 48; x++) {
+          const db = -20 + (x / (gw - 48)) * 40;
+          const r = Math.pow(10, db / 10);
+          const yN = Math.log10(r + 1) / Math.log10(101);
+          const px = 36 + x;
+          const py = (gh - 26) - yN * (gh - 54);
+          if (x === 0) gctx.moveTo(px, py);
+          else gctx.lineTo(px, py);
+        }
+        gctx.stroke();
+        moduleSketchCaption.textContent = 'Picture: one reference power can map to many ratio changes in dB.';
+        moduleGraphCaption.textContent = 'Graph: power ratio grows exponentially as dB increases linearly.';
+        return;
+      }
+
+      if (m.id === 'm3') {
+        sctx.strokeStyle = '#334155';
+        sctx.lineWidth = 3;
+        sctx.strokeRect(90, 70, 330, 130);
+        sctx.fillStyle = '#0f766e';
+        sctx.fillRect(90, 114, 42, 42);
+        sctx.fillStyle = '#fff';
+        sctx.fillText('V', 106, 141);
+        sctx.fillStyle = '#b45309';
+        sctx.fillRect(248, 70, 52, 34);
+        sctx.fillStyle = '#fff';
+        sctx.fillText('R', 268, 92);
+        drawArrow(sctx, 138, 135, 238, 135, '#0f766e');
+        sctx.fillStyle = '#334155';
+        sctx.fillText('I', 186, 125);
+        sctx.fillText('Simple loop: source, load, current flow', 130, 224);
+
+        drawAxes(gctx, gw, gh);
+        gctx.strokeStyle = '#0f766e';
+        gctx.lineWidth = 2;
+        gctx.beginPath();
+        for (let x = 0; x <= gw - 48; x++) {
+          const v = (x / (gw - 48)) * 12;
+          const i = v / 6;
+          const yN = Math.min(1, i / 2);
+          const px = 36 + x;
+          const py = (gh - 26) - yN * (gh - 54);
+          if (x === 0) gctx.moveTo(px, py);
+          else gctx.lineTo(px, py);
+        }
+        gctx.stroke();
+        moduleSketchCaption.textContent = 'Picture: battery pushes current through resistance.';
+        moduleGraphCaption.textContent = 'Graph: for fixed resistance, current rises linearly with voltage.';
+        return;
+      }
+
+      if (m.id === 'm4') {
+        sctx.strokeStyle = '#334155';
+        sctx.lineWidth = 3;
+        sctx.beginPath();
+        sctx.moveTo(70, 120);
+        sctx.lineTo(150, 120);
+        sctx.lineTo(180, 80);
+        sctx.lineTo(210, 160);
+        sctx.lineTo(240, 80);
+        sctx.lineTo(270, 160);
+        sctx.lineTo(300, 120);
+        sctx.lineTo(360, 120);
+        sctx.stroke();
+        sctx.beginPath();
+        sctx.moveTo(300, 120);
+        sctx.lineTo(300, 95);
+        sctx.lineTo(340, 95);
+        sctx.lineTo(340, 145);
+        sctx.lineTo(300, 145);
+        sctx.lineTo(300, 120);
+        sctx.stroke();
+        sctx.fillStyle = '#334155';
+        sctx.fillText('L', 225, 74);
+        sctx.fillText('C', 345, 122);
+        sctx.fillText('LC tank resonates at one center frequency', 115, 224);
+
+        drawAxes(gctx, gw, gh);
+        gctx.strokeStyle = '#b45309';
+        gctx.lineWidth = 2;
+        gctx.beginPath();
+        const f0 = 0.5;
+        const bw = 0.06;
+        for (let x = 0; x <= gw - 48; x++) {
+          const fn = x / (gw - 48);
+          const den = Math.sqrt(1 + Math.pow((fn - f0) / bw, 2));
+          const amp = 1 / den;
+          const px = 36 + x;
+          const py = (gh - 26) - amp * (gh - 54) * 0.9;
+          if (x === 0) gctx.moveTo(px, py);
+          else gctx.lineTo(px, py);
+        }
+        gctx.stroke();
+        moduleSketchCaption.textContent = 'Picture: inductor + capacitor network stores and exchanges energy.';
+        moduleGraphCaption.textContent = 'Graph: resonance peak around center frequency.';
+        return;
+      }
+
+      if (m.id === 'm5') {
+        sctx.fillStyle = '#334155';
+        sctx.fillText('AM/SSB/FM occupy different widths', 150, 26);
+        sctx.fillStyle = '#0f766e';
+        sctx.fillRect(90, 110, 24, 70);
+        sctx.fillStyle = '#b45309';
+        sctx.fillRect(180, 80, 50, 100);
+        sctx.fillStyle = '#334155';
+        sctx.fillRect(300, 50, 110, 130);
+        sctx.fillStyle = '#334155';
+        sctx.fillText('CW', 92, 200);
+        sctx.fillText('SSB', 188, 200);
+        sctx.fillText('FM', 345, 200);
+
+        drawAxes(gctx, gw, gh);
+        const bars = [
+          {name: 'CW', bw: 1, color: '#0f766e'},
+          {name: 'SSB', bw: 3, color: '#b45309'},
+          {name: 'FM', bw: 10, color: '#334155'},
+        ];
+        bars.forEach((b, i) => {
+          const x = 90 + i * 120;
+          const hBar = b.bw * 14;
+          gctx.fillStyle = b.color;
+          gctx.fillRect(x, (gh - 26) - hBar, 70, hBar);
+          gctx.fillStyle = '#334155';
+          gctx.fillText(b.name, x + 18, gh - 8);
+        });
+        moduleSketchCaption.textContent = 'Picture: each mode uses a different slice of spectrum.';
+        moduleGraphCaption.textContent = 'Graph: approximate relative bandwidth by mode.';
+        return;
+      }
+
+      if (m.id === 'm6') {
+        sctx.strokeStyle = '#334155';
+        sctx.lineWidth = 4;
+        sctx.beginPath();
+        sctx.moveTo(60, 120);
+        sctx.lineTo(460, 120);
+        sctx.stroke();
+        sctx.fillStyle = '#334155';
+        sctx.fillRect(460, 92, 26, 56);
+        drawArrow(sctx, 90, 108, 430, 108, '#0f766e');
+        drawArrow(sctx, 430, 132, 160, 132, '#b91c1c');
+        sctx.fillStyle = '#0f766e';
+        sctx.fillText('Forward wave', 150, 96);
+        sctx.fillStyle = '#b91c1c';
+        sctx.fillText('Reflected wave', 220, 152);
+
+        drawAxes(gctx, gw, gh);
+        gctx.strokeStyle = '#0f766e';
+        gctx.lineWidth = 2;
+        gctx.beginPath();
+        for (let x = 0; x <= gw - 48; x++) {
+          const gamma = x / (gw - 48) * 0.95;
+          const swr = (1 + gamma) / (1 - gamma);
+          const yN = Math.min(1, swr / 20);
+          const px = 36 + x;
+          const py = (gh - 26) - yN * (gh - 54);
+          if (x === 0) gctx.moveTo(px, py);
+          else gctx.lineTo(px, py);
+        }
+        gctx.stroke();
+        moduleSketchCaption.textContent = 'Picture: mismatch causes some energy to bounce back on the feed line.';
+        moduleGraphCaption.textContent = 'Graph: SWR rises quickly as reflection coefficient approaches 1.';
+        return;
+      }
+
+      if (m.id === 'm7') {
+        sctx.strokeStyle = '#334155';
+        sctx.lineWidth = 2;
+        sctx.beginPath();
+        sctx.moveTo(110, 190);
+        sctx.lineTo(110, 80);
+        sctx.stroke();
+        sctx.strokeStyle = '#0f766e';
+        sctx.beginPath();
+        sctx.arc(110, 135, 55, 0, Math.PI * 2);
+        sctx.stroke();
+        sctx.strokeStyle = '#b45309';
+        sctx.beginPath();
+        sctx.ellipse(350, 135, 95, 35, 0, 0, Math.PI * 2);
+        sctx.stroke();
+        sctx.fillStyle = '#334155';
+        sctx.fillText('Omni-like', 78, 216);
+        sctx.fillText('Directional beam', 300, 216);
+
+        drawAxes(gctx, gw, gh);
+        gctx.strokeStyle = '#0f766e';
+        gctx.lineWidth = 2;
+        gctx.beginPath();
+        for (let x = 0; x <= gw - 48; x++) {
+          const d = 1 + (x / (gw - 48)) * 50;
+          const loss = 20 * Math.log10(d);
+          const yN = Math.min(1, loss / 40);
+          const px = 36 + x;
+          const py = (gh - 26) - yN * (gh - 54);
+          if (x === 0) gctx.moveTo(px, py);
+          else gctx.lineTo(px, py);
+        }
+        gctx.stroke();
+        moduleSketchCaption.textContent = 'Picture: omni and directional patterns place energy differently.';
+        moduleGraphCaption.textContent = 'Graph: path loss generally increases with distance.';
+        return;
+      }
+
+      if (m.id === 'm8') {
+        sctx.strokeStyle = '#334155';
+        sctx.lineWidth = 2;
+        sctx.beginPath();
+        sctx.arc(260, 230, 220, Math.PI, Math.PI * 2);
+        sctx.stroke();
+        sctx.fillStyle = '#e5eef6';
+        sctx.fillRect(30, 65, 460, 25);
+        sctx.fillStyle = '#334155';
+        sctx.fillText('Ionosphere', 225, 82);
+        drawArrow(sctx, 90, 190, 250, 88, '#0f766e');
+        drawArrow(sctx, 250, 88, 420, 190, '#0f766e');
+        sctx.fillText('Skywave path', 215, 160);
+
+        drawAxes(gctx, gw, gh);
+        gctx.strokeStyle = '#b45309';
+        gctx.lineWidth = 2;
+        gctx.beginPath();
+        for (let x = 0; x <= gw - 48; x++) {
+          const t = x / (gw - 48);
+          const y = 0.45 + 0.3 * Math.sin(t * Math.PI * 2 - 0.8);
+          const px = 36 + x;
+          const py = (gh - 26) - y * (gh - 54);
+          if (x === 0) gctx.moveTo(px, py);
+          else gctx.lineTo(px, py);
+        }
+        gctx.stroke();
+        moduleSketchCaption.textContent = 'Picture: HF can refract from ionosphere and return to Earth.';
+        moduleGraphCaption.textContent = 'Graph: propagation quality can vary over time.';
+        return;
+      }
+
+      if (m.id === 'm9') {
+        sctx.fillStyle = '#334155';
+        sctx.fillRect(40, 100, 90, 46);
+        sctx.fillRect(180, 100, 90, 46);
+        sctx.fillRect(320, 100, 90, 46);
+        sctx.fillStyle = '#fff';
+        sctx.fillText('TX', 74, 128);
+        sctx.fillText('Path', 208, 128);
+        sctx.fillText('RX', 350, 128);
+        drawArrow(sctx, 130, 123, 180, 123, '#0f766e');
+        drawArrow(sctx, 270, 123, 320, 123, '#0f766e');
+        sctx.fillStyle = '#334155';
+        sctx.fillText('Add gains, subtract losses', 155, 186);
+
+        drawAxes(gctx, gw, gh);
+        gctx.strokeStyle = '#0f766e';
+        gctx.lineWidth = 2;
+        gctx.beginPath();
+        for (let x = 0; x <= gw - 48; x++) {
+          const d = 1 + (x / (gw - 48)) * 60;
+          const pr = -40 - 20 * Math.log10(d);
+          const yN = (pr + 90) / 50;
+          const px = 36 + x;
+          const py = (gh - 26) - Math.max(0, Math.min(1, yN)) * (gh - 54);
+          if (x === 0) gctx.moveTo(px, py);
+          else gctx.lineTo(px, py);
+        }
+        gctx.stroke();
+        moduleSketchCaption.textContent = 'Picture: link budget is a chain from transmitter to receiver.';
+        moduleGraphCaption.textContent = 'Graph: received level usually drops as distance increases.';
+        return;
+      }
+
+      if (m.id === 'm10') {
+        sctx.fillStyle = '#334155';
+        sctx.fillRect(250, 150, 20, 60);
+        sctx.strokeStyle = '#0f766e';
+        sctx.lineWidth = 2;
+        sctx.beginPath();
+        sctx.arc(260, 145, 28, 0, Math.PI * 2);
+        sctx.arc(260, 145, 58, 0, Math.PI * 2);
+        sctx.arc(260, 145, 90, 0, Math.PI * 2);
+        sctx.stroke();
+        sctx.fillStyle = '#334155';
+        sctx.fillText('Keep people outside higher-field zones', 150, 224);
+
+        drawAxes(gctx, gw, gh);
+        gctx.strokeStyle = '#b91c1c';
+        gctx.lineWidth = 2;
+        gctx.beginPath();
+        for (let x = 1; x <= gw - 48; x++) {
+          const d = 1 + (x / (gw - 48)) * 40;
+          const e = 1 / (d * d);
+          const px = 36 + x;
+          const py = (gh - 26) - e * (gh - 54) * 45;
+          if (x === 1) gctx.moveTo(px, py);
+          else gctx.lineTo(px, py);
+        }
+        gctx.stroke();
+        moduleSketchCaption.textContent = 'Picture: define safe operating distance around antennas.';
+        moduleGraphCaption.textContent = 'Graph: RF field strength and power density drop quickly with distance.';
+        return;
+      }
+
+      moduleSketchCaption.textContent = '';
+      moduleGraphCaption.textContent = '';
     }
 
     function drawAxes(ctx, w, h) {
@@ -986,7 +1612,7 @@ class LearningHandler(BaseHTTPRequestHandler):
         parsed = urllib.parse.urlsplit(self.path)
 
         if parsed.path == "/":
-            html = WEB_TEMPLATE.replace("__ROADMAP_JSON__", json.dumps(LEARNING_ROADMAP))
+            html = WEB_TEMPLATE.replace("__ROADMAP_JSON__", json.dumps(get_learning_roadmap()))
             self._send_html(200, html)
             return
 
